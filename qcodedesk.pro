@@ -11,11 +11,12 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = qcodedesk
 TEMPLATE = app
 
+INCLUDEPATH += include
 
 SOURCES += src/main.cpp \
     src/MainWindow.cpp
 
-HEADERS  += include/MainWindow.h
+HEADERS  += MainWindow.h
 
 FORMS    += \
     ui/mainwindow.ui

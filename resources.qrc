@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/main">
+        <file>res/qCodeDesk.png</file>
+    </qresource>
+</RCC>

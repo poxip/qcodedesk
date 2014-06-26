@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/main">
         <file>res/qCodeDesk.png</file>
+        <file>res/tray-icon/normal.png</file>
+        <file>res/tray-icon/notify.png</file>
     </qresource>
 </RCC>

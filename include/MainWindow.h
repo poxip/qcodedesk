@@ -1,3 +1,9 @@
+/**
+  * @author MrPoxipol <michal.proszek@gmail.com>
+  * @date   Jun 26, 2014
+  * @brief  Application MainWindow.
+  */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

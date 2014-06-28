@@ -1,3 +1,9 @@
+/**
+  * @author MrPoxipol <michal.proszek@gmail.com>
+  * @date   Jun 26, 2014
+  * @brief  MainWindow implementation.
+  */
+
 #include "MainWindow.h"
 #include "ui_mainwindow.h"
 

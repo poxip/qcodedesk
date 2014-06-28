@@ -6,7 +6,7 @@ qcd::TrayIcon::TrayIcon(QObject *parent) :
 }
 
 void qcd::TrayIcon::setIconImages(const QString &normalImagePath,
-                             const QString &notifyImagePath)
+                                  const QString &notifyImagePath)
 {
     icons[State::Normal].addFile(normalImagePath);
     icons[State::Notify].addFile(notifyImagePath);

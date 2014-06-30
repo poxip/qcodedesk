@@ -30,7 +30,18 @@ QString News::fetchXml() const
 /** \copydoc parse */
 bool News::parse(const QString& data)
 {
-    QXmlStreamReader xml()
+    QXmlStreamReader xml(data);
+
+    while (!xml.atEnd())
+    {
+        xml.readNext();
+        // @TODO - parsing
+    }
+
+    if (!xml.hasError())
+        return true;
+
+    return false;
 }
 
 /** \copydoc update */

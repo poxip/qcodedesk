@@ -14,6 +14,7 @@
 #include <QString>
 #include <QDebug>
 #include <QApplication>
+#include <QXmlStreamReader>
 #include <vector>
 
 #include "Topic.h"
@@ -31,8 +32,14 @@ public:
      */
     QString fetchXml() const;
     /**
+     * @brief Parses XML and updates topics list
+     * @param[i] data A XML data
+     * @return \b true if parsing was complete successfull, otherwise \b false
+     */
+    bool parse(const QString& data);
+    /**
      * @brief fetches cpp0x.pl/xml and updates news data
-     * @return \btrue if update was complete successfull, otherwise \bfalse
+     * @return \b true if update was complete successfull, otherwise \b false
      */
     bool update();
 

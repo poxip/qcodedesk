@@ -27,6 +27,12 @@ QString News::fetchXml() const
     return reply_data;
 }
 
+/** \copydoc parse */
+bool News::parse(const QString& data)
+{
+    QXmlStreamReader xml()
+}
+
 /** \copydoc update */
 bool News::update()
 {

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core network xml gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,10 +17,14 @@ INCLUDEPATH += include
 
 SOURCES += src/main.cpp \
     src/MainWindow.cpp \
-    src/qcd/TrayIcon.cpp
+    src/qcd/TrayIcon.cpp \
+    src/News.cpp \
+    src/Topic.cpp
 
 HEADERS  += include/MainWindow.h \
-    include/qcd/TrayIcon.h
+    include/qcd/TrayIcon.h \
+    include/News.h \
+    include/Topic.h
 
 FORMS    += \
     ui/mainwindow.ui

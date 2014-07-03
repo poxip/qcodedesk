@@ -14,7 +14,7 @@
 #include <QString>
 #include <QDebug>
 #include <QApplication>
-#include <QXmlStreamReader>
+#include <QtXml>
 #include <vector>
 
 #include "Topic.h"

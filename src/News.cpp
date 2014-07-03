@@ -30,18 +30,41 @@ QString News::fetchXml() const
 /** \copydoc parse */
 bool News::parse(const QString& data)
 {
-    QXmlStreamReader xml(data);
+    topics.clear();
 
-    while (!xml.atEnd())
+    QDomDocument doc("codedesk");
+    if(!doc.setContent(data))
+        return false;
+
+    QDomElement doc_elem = doc.documentElement();
+
+    // Parse all Topic elements
+    QDomNodeList elements = doc_elem.elementsByTagName("Topic");
+    for (int i = 0; i < elements.size(); ++i)
     {
-        xml.readNext();
-        // @TODO - parsing
+        QDomNode node = elements.at(i);
+        // Attribs
+        QDomElement e = node.toElement();
+        if (e.isNull())
+            return false;
+
+        // Parse topic
+        Topic topic;
+        topic.id            = e.attribute("Id").toUInt();
+        topic.forum_section = e.attribute("ParentId").toUInt();
+        topic.update_date   = e.attribute("UpdateDT");
+        topic.post_count    = e.attribute("PostCount").toUInt();
+
+        // Title
+        QDomElement title_element = node.firstChildElement();
+        if (title_element.isNull())
+            return false;
+
+        topic.title = title_element.text();
+        topics.push_back(topic);
     }
 
-    if (!xml.hasError())
-        return true;
-
-    return false;
+    return true;
 }
 
 /** \copydoc update */

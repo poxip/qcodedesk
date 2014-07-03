@@ -19,8 +19,17 @@ struct Topic
     QString update_date;
     std::size_t post_count;
 
+    QString title;
+
+    Topic()
+        : id(0),
+          forum_section(0),
+          post_count(0)
+    {}
+
     Topic(const Id id,
           const Id forum_section,
+          const QString &title,
           const QString &update_date,
           const std::size_t post_count);
 };

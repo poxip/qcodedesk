@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     createActions();
     createTrayIcon();
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-                 this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
+            this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
 
     trayIcon->show();
 }

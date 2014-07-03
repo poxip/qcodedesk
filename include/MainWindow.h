@@ -13,6 +13,7 @@
 #include <QDebug>
 
 #include "qcd/TrayIcon.h"
+#include "News.h"
 
 namespace Ui {
 class MainWindow;
@@ -46,6 +47,9 @@ private:
     QAction *windowToggleAction;
     QAction *updateAction;
     QAction *quitAction;
+
+    // Data
+    News news;
 };
 
 #endif // MAINWINDOW_H

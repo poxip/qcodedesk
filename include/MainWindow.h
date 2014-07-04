@@ -7,11 +7,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QSystemTrayIcon>
-#include <QMenu>
-#include <QTimer>
-#include <QDebug>
+#include <QtCore>
+#include <QtGui>
+#include <QtWidgets>
 
 #include "qcd/TrayIcon.h"
 #include "News.h"

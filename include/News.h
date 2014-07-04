@@ -7,13 +7,8 @@
 #ifndef NEWS_H
 #define NEWS_H
 
+#include <QtCore>
 #include <QtNetwork>
-#include <QUrl>
-#include <QByteArray>
-#include <QEventLoop>
-#include <QString>
-#include <QDebug>
-#include <QApplication>
 #include <QtXml>
 #include <vector>
 

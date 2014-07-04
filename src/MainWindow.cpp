@@ -39,7 +39,7 @@ void MainWindow::createActions()
     connect(windowToggleAction, SIGNAL(triggered()), this, SLOT(toggleWindow()));
 
     updateAction = new QAction(tr("Sprawdź aktualności"), this);
-    connect(updateAction, SIGNAL(triggered()), this, SLOT(toggleWindow()));
+    connect(updateAction, SIGNAL(triggered()), this, SLOT(updateNewsView()));
 
     quitAction = new QAction(tr("Zamknij"), this);
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));

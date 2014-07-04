@@ -59,7 +59,7 @@
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QTreeWidget" name="treeWidget_2">
+           <widget class="QTreeWidget" name="treeWidget">
             <property name="sizeAdjustPolicy">
              <enum>QAbstractScrollArea::AdjustIgnored</enum>
             </property>

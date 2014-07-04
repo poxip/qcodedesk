@@ -26,7 +26,16 @@ class News : public QObject
 public:
     News();
 
+    /**
+     * @brief fetches cpp0x.pl/xml and updates news data
+     * @return \b true if update was complete successfull, otherwise \b false
+     */
+    bool update();
+
     static const std::size_t UPDATE_INTERVAL;
+    std::vector <Topic> topics;
+
+private:
     /**
      * @brief polls cpp0x.pl/xml for XML file
      * @return A QString object filled with XML data (plain text)
@@ -38,15 +47,7 @@ public:
      * @return \b true if parsing was complete successfull, otherwise \b false
      */
     bool parse(const QString& data);
-    /**
-     * @brief fetches cpp0x.pl/xml and updates news data
-     * @return \b true if update was complete successfull, otherwise \b false
-     */
-    bool update();
 
-    std::vector <Topic> topics;
-
-private:
     QNetworkAccessManager *network_manager;
 };
 

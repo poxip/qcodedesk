@@ -6,7 +6,7 @@
 
 #include "News.h"
 
-const std::size_t News::UPDATE_INTERVAL = 10000;
+const std::size_t News::UPDATE_INTERVAL = SECONDS(60);
 
 News::News()
 {

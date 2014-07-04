@@ -15,6 +15,7 @@
 #include "Topic.h"
 
 #define XML_URL "http://cpp0x.pl/xml/"
+#define SECONDS(a) a*1000
 
 class News : public QObject
 {
@@ -27,6 +28,7 @@ public:
      */
     bool update();
 
+    // Milliseconds
     static const std::size_t UPDATE_INTERVAL;
     std::vector <Topic> topics;
 

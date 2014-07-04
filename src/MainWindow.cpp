@@ -18,6 +18,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
 
+    news_timer = new QTimer(this);
+    connect(news_timer, SIGNAL(timeout()), SLOT(updateNewsView()));
+    news_timer->start(News::UPDATE_INTERVAL);
+
+
     trayIcon->show();
 }
 
@@ -66,4 +71,9 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
     default:
         ;
     }
+}
+
+void MainWindow::updateNewsView()
+{
+    qDebug() << "updateNewsView() placeholder // @TODO";
 }

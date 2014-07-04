@@ -26,6 +26,7 @@ class News : public QObject
 public:
     News();
 
+    static const std::size_t UPDATE_INTERVAL;
     /**
      * @brief polls cpp0x.pl/xml for XML file
      * @return A QString object filled with XML data (plain text)

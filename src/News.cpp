@@ -6,6 +6,8 @@
 
 #include "News.h"
 
+const std::size_t News::UPDATE_INTERVAL = 10000;
+
 News::News()
 {
     network_manager = new QNetworkAccessManager();

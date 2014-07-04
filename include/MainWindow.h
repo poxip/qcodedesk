@@ -10,6 +10,7 @@
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 #include <QMenu>
+#include <QTimer>
 #include <QDebug>
 
 #include "qcd/TrayIcon.h"
@@ -31,6 +32,8 @@ private slots:
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
     // Can be used as slot but even to simply toggle window
     void toggleWindow() { setVisible(!isVisible()); }
+    // News update timeout slot
+    void updateNewsView();
 
 private:
     void createActions();
@@ -48,6 +51,7 @@ private:
     QAction *updateAction;
     QAction *quitAction;
 
+    QTimer *news_timer;
     // Data
     News news;
 };

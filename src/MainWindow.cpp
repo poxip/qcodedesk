@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->treeWidget->header()->setMaximumSectionSize(256);
 
     createActions();
     createTrayIcon();
@@ -21,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent) :
     news_timer = new QTimer(this);
     connect(news_timer, SIGNAL(timeout()), SLOT(updateNewsView()));
     news_timer->start(News::UPDATE_INTERVAL);
-
 
     trayIcon->show();
 }
@@ -75,5 +75,24 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 
 void MainWindow::updateNewsView()
 {
-    qDebug() << "updateNewsView() placeholder // @TODO";
+    if (!news.update())
+    {
+        trayIcon->showMessage("Wystąpił błąd",
+                              "Nie można pobrać aktualnej listy tematów lub jest ona błędna.");
+        return;
+    }
+
+    ui->treeWidget->clear();
+    for (auto topic : news.topics)
+    {
+        // Create temporary item
+        QTreeWidgetItem *item = new QTreeWidgetItem();
+        item->setText(TopicViewColumn::Title, topic.title);
+        item->setText(TopicViewColumn::PostCount, QString::number(topic.post_count));
+        item->setText(TopicViewColumn::LastUpdate, topic.update_date);
+
+        ui->treeWidget->addTopLevelItem(item);
+    }
+
+    ui->treeWidget->header()->resizeSections(QHeaderView::ResizeToContents);
 }

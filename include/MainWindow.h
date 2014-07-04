@@ -34,6 +34,13 @@ private slots:
     void updateNewsView();
 
 private:
+    enum TopicViewColumn
+    {
+        Title,
+        PostCount,
+        LastUpdate
+    };
+
     void createActions();
     void createTrayIcon();
 

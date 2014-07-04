@@ -72,5 +72,9 @@ bool News::parse(const QString& data)
 /** \copydoc update */
 bool News::update()
 {
+    QString data = fetchXml();
+    if (!data)
+        return false;
 
+    return parse(data);
 }

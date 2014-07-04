@@ -73,7 +73,7 @@ bool News::parse(const QString& data)
 bool News::update()
 {
     QString data = fetchXml();
-    if (!data)
+    if (data.isNull())
         return false;
 
     return parse(data);

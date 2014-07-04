@@ -31,7 +31,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -82,7 +82,7 @@
              <bool>false</bool>
             </property>
             <attribute name="headerVisible">
-             <bool>true</bool>
+             <bool>false</bool>
             </attribute>
             <attribute name="headerCascadingSectionResizes">
              <bool>false</bool>
@@ -223,8 +223,8 @@
             </property>
             <property name="maximumSize">
              <size>
-              <width>128</width>
-              <height>128</height>
+              <width>173</width>
+              <height>173</height>
              </size>
             </property>
             <property name="text">
@@ -291,8 +291,16 @@
             </item>
             <item>
              <widget class="QLabel" name="label_5">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
-               <string>CodeDesk (cpp0x.pl) w wersji dla systemów Linux.</string>
+               <string>CodeDesk (cpp0x.pl) w wersji dla systemów Linux.
+
+Licencja: GPLv3</string>
               </property>
               <property name="scaledContents">
                <bool>false</bool>
@@ -302,16 +310,6 @@
               </property>
               <property name="wordWrap">
                <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_6">
-              <property name="text">
-               <string>Licencja: GPLv3</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignHCenter|Qt::AlignTop</set>
               </property>
              </widget>
             </item>

@@ -22,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     news_timer = new QTimer(this);
     connect(news_timer, SIGNAL(timeout()), SLOT(updateNewsView()));
     news_timer->start(News::UPDATE_INTERVAL);
+    // And trigger
+    updateNewsView();
 
     trayIcon->show();
 }

@@ -3,10 +3,10 @@
   - [x] Allow users to perform updates manualy (in Tray Icon's context menu) 
   - [x] Open topic in browser on double click on row in *Topic View*
   - [ ] Add notifications (default Qt baloon for Windows, but for Linux **libnotify**)
-  - [ ] Add **Topic seen** icon to *Topic View*
   
 * Milestone 1.0
   - [ ] Enable logging to user account by the app (fetching all topics, that can be seen by logged user)
+  - [ ] Add **Topic seen** icon to *Topic View*
   - [ ] Show **Topic Section icon** in *Topic View*
   
 ### Have you any ideas what should be added/corrected?

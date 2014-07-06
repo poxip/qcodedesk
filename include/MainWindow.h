@@ -14,6 +14,8 @@
 #include "qcd/TrayIcon.h"
 #include "News.h"
 
+#define FORUM_TOPIC_PAATTERN "http://cpp0x.pl/forum/temat/?id=%1"
+
 namespace Ui {
 class MainWindow;
 }
@@ -30,6 +32,7 @@ private slots:
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
     // Can be used as slot but even to simply toggle window
     void toggleWindow() { setVisible(!isVisible()); }
+    void topicItemDoubleClicked(QTreeWidgetItem* item, int column);
     // News update timeout slot
     void updateNewsView();
 
@@ -38,7 +41,9 @@ private:
     {
         Title,
         PostCount,
-        LastUpdate
+        LastUpdate,
+        // Hidden
+        UrlData
     };
 
     void createActions();

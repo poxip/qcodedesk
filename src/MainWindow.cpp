@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->treeWidget->header()->setMaximumSectionSize(256);
+    connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
+            this, SLOT(topicItemDoubleClicked(QTreeWidgetItem*, int)));
 
     createActions();
     createTrayIcon();
@@ -75,6 +77,14 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
     }
 }
 
+void MainWindow::topicItemDoubleClicked(QTreeWidgetItem* item, int column)
+{
+    Q_UNUSED(column);
+
+    QUrl url(item->data(TopicViewColumn::UrlData, Qt::UserRole).toString());
+    QDesktopServices::openUrl(url);
+}
+
 void MainWindow::updateNewsView()
 {
     if (!news.update())
@@ -92,6 +102,9 @@ void MainWindow::updateNewsView()
         item->setText(TopicViewColumn::Title, topic.title);
         item->setText(TopicViewColumn::PostCount, QString::number(topic.post_count));
         item->setText(TopicViewColumn::LastUpdate, topic.update_date);
+
+        QString url =  QString(FORUM_TOPIC_PAATTERN).arg(topic.id);
+        item->setData(TopicViewColumn::UrlData, Qt::UserRole, url);
 
         ui->treeWidget->addTopLevelItem(item);
     }

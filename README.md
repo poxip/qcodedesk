@@ -1,5 +1,5 @@
 # qCodeDesk
-![qCodeDesk logo](/res/qCodeDesk.png?raw=true =256x256)
+<img src="/res/qCodeDesk.png?raw=true" width="256" height="256" alt="qCodeDesk logo"/>
 
 A Qt based cpp0x.pl's Code Desk app for Linux (Windows too).
 ## Screenshots

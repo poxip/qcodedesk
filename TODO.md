@@ -2,7 +2,7 @@
 * Milestone 0.9 - first beta
   - [x] Allow users to perform updates manualy (in Tray Icon's context menu) 
   - [x] Open topic in browser on double click on row in *Topic View*
-  - [ ] Placeholder **Topic seen** icon (topic not seen)
+  - [x] Placeholder **Topic seen** icon (topic not seen)
   - [ ] Add notifications (default Qt baloon for Windows, but for Linux **libnotify**)
   
 * Milestone 1.0

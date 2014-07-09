@@ -11,8 +11,6 @@ A Qt based cpp0x.pl's Code Desk app.
 ![Main Window](/screenshots/MainWindow.png?raw=true)
 ## More
 Check the [TODO file](TODO.md) for more informations.
-
-~~~
 ## Icons
 * [FatCow Hosting](http://fatcow.com)
 * [Paomedia](http://www.paomedia.com)

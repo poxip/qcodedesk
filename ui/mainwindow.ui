@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>QCodeDesk</string>
+   <string>qCodeDesk</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resources.qrc">

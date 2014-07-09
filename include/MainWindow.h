@@ -46,6 +46,7 @@ private:
         UrlData
     };
 
+    void createIcons();
     void createActions();
     void createTrayIcon();
 
@@ -64,6 +65,9 @@ private:
     QTimer *news_timer;
     // Data
     News news;
+
+    // Misc
+    QIcon topicNormalIcon;
 };
 
 #endif // MAINWINDOW_H

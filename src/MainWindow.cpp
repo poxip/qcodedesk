@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
             this, SLOT(topicItemDoubleClicked(QTreeWidgetItem*, int)));
 
+    createIcons();
     createActions();
     createTrayIcon();
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
@@ -33,6 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::createIcons()
+{
+    topicNormalIcon.addFile(":/main/res/topic/normal.png");
 }
 
 void MainWindow::createActions()
@@ -105,6 +111,7 @@ void MainWindow::updateNewsView()
 
         QString url =  QString(FORUM_TOPIC_PAATTERN).arg(topic.id);
         item->setData(TopicViewColumn::UrlData, Qt::UserRole, url);
+        item->setIcon(0, topicNormalIcon);
 
         ui->treeWidget->addTopLevelItem(item);
     }

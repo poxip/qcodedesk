@@ -68,7 +68,7 @@ void MainWindow::createTrayIcon()
     // Tray icon
     trayIcon->setIconImages(":/main/res/tray-icon/normal.png",
                             ":/main/res/tray-icon/notify.png");
-    trayIcon->setState(qcd::TrayIcon::State::Notify);
+    trayIcon->setState(qcd::TrayIcon::State::Normal);
 }
 
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)

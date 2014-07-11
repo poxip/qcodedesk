@@ -28,7 +28,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-private slots:
+private Q_SLOTS:
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
     // Can be used as slot but even to simply toggle window
     void toggleWindow() { setVisible(!isVisible()); }

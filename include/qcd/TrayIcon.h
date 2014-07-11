@@ -10,6 +10,15 @@
 
 #include <QSystemTrayIcon>
 #include <QIcon>
+#include <QDebug>
+
+#include "config.h"
+
+#ifdef __linux__
+#include <libnotify/notify.h>
+#endif
+
+#define CONST_CHAR(qstring) qstring.toUtf8().constData()
 
 namespace qcd {
 class TrayIcon : public QSystemTrayIcon
@@ -23,6 +32,7 @@ public:
     };
 
     explicit TrayIcon(QObject *parent = 0);
+    ~TrayIcon();
 
     /**
      * @brief Sets icons, which will be used to\
@@ -42,8 +52,18 @@ public:
         setIcon(icons[state]);
     }
 
+    /**
+     * @brief Crossplatform notification, uses libnotify for Linux\
+     *        and default Qt showMessage() for Windows and others.
+     * @param[in] title Notify message title
+     * @param[in] message Notify message
+     */
+    void notify(const QString& title, const QString& message);
+
 private:
     QIcon icons[2];
+    // libnotify popup icon
+    GdkPixbuf* notify_icon;
 };
 }
 

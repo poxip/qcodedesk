@@ -8,7 +8,7 @@ QT       += core network xml gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++11 no_keywords
 
 TARGET = qcodedesk
 TEMPLATE = app
@@ -24,10 +24,16 @@ SOURCES += src/main.cpp \
 HEADERS  += include/MainWindow.h \
     include/qcd/TrayIcon.h \
     include/News.h \
-    include/Topic.h
+    include/Topic.h \
+    include/config.h
 
 FORMS    += \
     ui/mainwindow.ui
 
 RESOURCES += \
     resources.qrc
+
+unix:!macx {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += libnotify
+}

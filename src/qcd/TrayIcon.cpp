@@ -36,7 +36,7 @@ void qcd::TrayIcon::notify(const QString& title, const QString& message)
     NotifyNotification *popup = notify_notification_new(
                 CONST_CHAR(title),
                 CONST_CHAR(message),
-                "default");
+                "mail-message-new");
     notify_notification_show(popup, NULL);
     g_object_unref(G_OBJECT(popup));
 #else

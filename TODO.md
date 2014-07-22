@@ -4,6 +4,7 @@
   - [x] Open topic in browser on double click on row in *Topic View*
   - [x] Placeholder **Topic seen** icon (topic not seen)
   - [ ] Add notifications (default Qt baloon for Windows, but for Linux **libnotify**)
+  - [ ] Remove some minor bugs
   
 * Milestone 1.0
   - [ ] Enable logging to user account by the app (fetching all topics, that can be seen by logged user)

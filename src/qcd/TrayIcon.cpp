@@ -11,6 +11,9 @@ qcd::TrayIcon::TrayIcon(QObject *parent) :
     // if __linux__ initialize libnotify
 #ifdef __linux__
     notify_init(APP_NAME);
+#else
+    // set default Qt's messageClicked() callback
+    connect(this, SIGNAL(messageClicked()), this, SLOT(messageClicked()));
 #endif
 }
 
@@ -62,6 +65,7 @@ void qcd::TrayIcon::notify(const QString& title, const QString& message, const c
     if (!url)
         g_object_unref(G_OBJECT(popup));
 #else
+    url_to_open = QUrl(url);
     showMessage(title, message);
 #endif
 }

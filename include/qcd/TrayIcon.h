@@ -61,10 +61,25 @@ public:
      * @param[in] message Notify message
      * @param[in] url Optional url to open in browser on user click
      */
-    void notify(const QString& title, const QString& message, const char* url = nullptr);
+    void notify(const QString& title, const QString& message, const char* url = "");
+
+private Q_SLOTS:
+
+    // ONLY FOR TESTING!!
+#undef __linux__
+    /**
+     * @brief A callback for default notifications - Qt's showMessage()
+     */
+    void messageClicked()
+    {
+        qDebug() << "url: " << url_to_open.url();
+        QDesktopServices::openUrl(url_to_open);
+    }
 
 private:
     QIcon icons[2];
+    // For default Qt showMessage() urls
+    QUrl url_to_open;
 };
 }
 

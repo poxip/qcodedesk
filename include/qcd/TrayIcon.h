@@ -9,6 +9,8 @@
 #define TRAYICON_H
 
 #include <QSystemTrayIcon>
+#include <QtCore>
+#include <QDesktopServices>
 #include <QIcon>
 #include <QDebug>
 
@@ -18,7 +20,7 @@
 #include <libnotify/notify.h>
 #endif
 
-#define CONST_CHAR(qstring) qstring.toUtf8().constData()
+#define QSTRING_TO_CHAR(qstring) qstring.toUtf8().constData()
 
 namespace qcd {
 class TrayIcon : public QSystemTrayIcon
@@ -57,13 +59,12 @@ public:
      *        and default Qt showMessage() for Windows and others.
      * @param[in] title Notify message title
      * @param[in] message Notify message
+     * @param[in] url Optional url to open in browser on user click
      */
-    void notify(const QString& title, const QString& message);
+    void notify(const QString& title, const QString& message, const char* url = nullptr);
 
 private:
     QIcon icons[2];
-    // libnotify popup icon
-    GdkPixbuf* notify_icon;
 };
 }
 

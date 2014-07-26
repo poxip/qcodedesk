@@ -10,6 +10,8 @@
 #include <QtCore>
 #include <QtNetwork>
 #include <QtXml>
+
+#include <iostream>
 #include <vector>
 
 #include "Topic.h"
@@ -27,10 +29,21 @@ public:
      * @return \b true if update was complete successfull, otherwise \b false
      */
     bool update();
+    /**
+     * @brief Checks for new posts
+     * @return \b true if new posts otherwise \b false
+     */
+    inline bool newPosts()
+    {
+        return (document_has_changes && document_has_new_posts);
+    }
 
     // Milliseconds
     static const std::size_t UPDATE_INTERVAL;
     std::vector <Topic> topics;
+
+    // How many times news were updated
+    std::size_t updates_count;
 
 private:
     /**
@@ -46,6 +59,14 @@ private:
     bool parse(const QString& data);
 
     QNetworkAccessManager *network_manager;
+
+    // Notifications data
+    // flags
+    bool document_has_changes;
+    bool document_has_new_posts;
+
+    QString last_update_date;
+    Topic last_first_topic;
 };
 
 #endif // NEWS_H

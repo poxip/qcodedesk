@@ -11,6 +11,7 @@ const std::size_t News::UPDATE_INTERVAL = SECONDS(60);
 News::News()
 {
     network_manager = new QNetworkAccessManager();
+    updates_count = 0;
 }
 
 /** \copydoc fetchXml */
@@ -40,6 +41,19 @@ bool News::parse(const QString& data)
 
     QDomElement doc_elem = doc.documentElement();
 
+    QString update_date;
+    // read last update date
+    try {
+        update_date = doc_elem.elementsByTagName("Information").at(0).toElement().text();
+    } catch (std::out_of_range e) {
+        std::cerr << "Out of Range Exception \
+                     while parsing XML news data: " << e.what() << '\n';
+
+        return false;
+    }
+    document_has_changes = (update_date != last_update_date);
+    last_update_date = update_date;
+
     // Parse all Topic elements
     QDomNodeList elements = doc_elem.elementsByTagName("Topic");
     for (int i = 0; i < elements.size(); ++i)
@@ -65,6 +79,22 @@ bool News::parse(const QString& data)
         topic.title = title_element.text();
         topics.push_back(topic);
     }
+
+    Topic first_topic;
+    try {
+        first_topic = topics.at(0);
+    }
+    catch (const std::out_of_range e) {
+        std::cerr << "Out of Range Exception \
+                     while parsing XML news data: " << e.what() << '\n';
+
+        return false;
+    }
+    document_has_new_posts = (first_topic.post_count != last_first_topic.post_count);
+    last_first_topic = first_topic;
+
+    // Successfull update
+    ++updates_count;
 
     return true;
 }

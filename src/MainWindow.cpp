@@ -117,4 +117,22 @@ void MainWindow::updateNewsView()
     }
 
     ui->treeWidget->header()->resizeSections(QHeaderView::ResizeToContents);
+
+    // Notify about changes
+    if (news.newPosts() && news.updates_count > 1)
+    {
+        try {
+            Topic first_topic = news.topics.at(0);
+            QString title = "#" + QString::number(first_topic.id);
+            QString url = QString(FORUM_TOPIC_PAATTERN).arg(first_topic.id);
+
+            trayIcon->notify(title, first_topic.title, QSTRING_TO_CHAR(url));
+        }
+        catch (const std::out_of_range e) {
+            std::cerr << "Out of Range Exception \
+                         while getting data from parsed document: " << e.what() << '\n';
+
+            return;
+        }
+    }
 }

@@ -11,6 +11,8 @@
 #include <QtGui>
 #include <QtWidgets>
 
+#include <iostream>
+
 #include "qcd/TrayIcon.h"
 #include "News.h"
 

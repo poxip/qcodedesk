@@ -61,7 +61,7 @@ public:
      * @param[in] message Notify message
      * @param[in] url Optional url to open in browser on user click
      */
-    void notify(const QString& title, const QString& message, const char* url = "");
+    void notify(const QString& title, const QString& message, const char* url = nullptr);
 
 private Q_SLOTS:
     /**

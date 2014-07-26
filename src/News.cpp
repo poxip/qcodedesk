@@ -44,7 +44,8 @@ bool News::parse(const QString& data)
     QString update_date;
     // read last update date
     try {
-        update_date = doc_elem.elementsByTagName("Information").at(0).toElement().text();
+        auto info_node = doc_elem.elementsByTagName("Information").at(0);
+        update_date = info_node.toElement().attribute("CreateDT");
     } catch (std::out_of_range e) {
         std::cerr << "Out of Range Exception \
                      while parsing XML news data: " << e.what() << '\n';

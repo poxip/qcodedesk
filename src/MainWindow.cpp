@@ -104,8 +104,10 @@ void MainWindow::updateNewsView()
 {
     if (!news.update())
     {
-        trayIcon->notify(tr("Wystąpił błąd"),
-                         tr("Nie można pobrać/przetworzyć aktualnej listy tematów"));
+        std::cerr << "Cannot fetch or parse XML news document" << '\n';
+        ui->statusBar->showMessage(tr("Wystąpił błąd podczas pobierania \
+                                  lub parsowania listy tematów"));
+
         return;
     }
 
@@ -144,4 +146,6 @@ void MainWindow::updateNewsView()
             return;
         }
     }
+
+    ui->statusBar->showMessage(tr("Zaktualizowano"));
 }

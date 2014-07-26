@@ -64,9 +64,6 @@ public:
     void notify(const QString& title, const QString& message, const char* url = "");
 
 private Q_SLOTS:
-
-    // ONLY FOR TESTING!!
-#undef __linux__
     /**
      * @brief A callback for default notifications - Qt's showMessage()
      */

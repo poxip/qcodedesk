@@ -38,6 +38,9 @@ private Q_SLOTS:
     // News update timeout slot
     void updateNewsView();
 
+    // Hide window to irritate the user!
+    void closeEvent(QCloseEvent *e);
+
 private:
     enum TopicViewColumn
     {

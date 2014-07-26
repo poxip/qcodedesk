@@ -54,6 +54,14 @@ void MainWindow::createActions()
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
+// Slots
+void MainWindow::closeEvent(QCloseEvent *e)
+{
+    this->hide();
+
+    e->ignore();
+}
+
 void MainWindow::createTrayIcon()
 {
     // Tray icon context menu

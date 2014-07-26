@@ -99,7 +99,7 @@ void MainWindow::updateNewsView()
 {
     if (!news.update())
     {
-        trayIcon->showMessage("Wystąpił błąd",
+        trayIcon->notify("Wystąpił błąd",
                               "Nie można pobrać aktualnej listy tematów lub jest ona błędna.");
         return;
     }

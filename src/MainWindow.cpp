@@ -12,9 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    // Setup sorting
-    ui->treeWidget->sortByColumn(TopicViewColumn::LastUpdate);
-    ui->treeWidget->setSortingEnabled(true);
 
     ui->treeWidget->header()->setMaximumSectionSize(256);
     connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),

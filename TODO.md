@@ -4,8 +4,8 @@
   - [x] Open topic in browser on double click on row in *Topic View*
   - [x] Placeholder **Topic seen** icon (topic not seen)
   - [x] Add notifications (default Qt baloon for Windows, but for Linux **libnotify**)__*__
+  - [x] Remove some minor bugs 
   - [ ] Add menu to the MainWindow
-  - [ ] Remove some minor bugs 
   
 __*__ need to be tested
 * Milestone 1.0

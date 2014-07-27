@@ -54,6 +54,7 @@ private:
     void createIcons();
     void createActions();
     void createTrayIcon();
+    void createNewsThread();
 
     Ui::MainWindow *ui;
 
@@ -67,6 +68,7 @@ private:
     QAction *updateAction;
     QAction *quitAction;
 
+    QThread *news_thread;
     QTimer *news_timer;
     // Data
     News news;

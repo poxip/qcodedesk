@@ -23,11 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
 
-    news_timer = new QTimer(this);
-    connect(news_timer, SIGNAL(timeout()), SLOT(updateNewsView()));
-    news_timer->start(News::UPDATE_INTERVAL);
-    // And trigger
     updateNewsView();
+    createNewsThread();
 
     trayIcon->show();
 }
@@ -52,6 +49,18 @@ void MainWindow::createActions()
 
     quitAction = new QAction(tr("Zamknij"), this);
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+}
+
+void MainWindow::createNewsThread()
+{
+    news_timer = new QTimer();
+    news_timer->setInterval(News::UPDATE_INTERVAL);
+    news_timer->start();
+    connect(news_timer, SIGNAL(timeout()), SLOT(updateNewsView()));
+
+    news_thread = new QThread(this);
+    news_timer->moveToThread(news_thread);
+    news_thread->start();
 }
 
 // Slots

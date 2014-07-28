@@ -19,7 +19,9 @@ qcd::TrayIcon::TrayIcon(QObject *parent) :
 
 qcd::TrayIcon::~TrayIcon()
 {
+#ifdef __linux__
     notify_uninit();
+#endif
 }
 
 /** \copydoc setIconImages */
@@ -32,6 +34,7 @@ void qcd::TrayIcon::setIconImages(const QString &normalImagePath,
     setState(State::Notify);
 }
 
+#ifdef __linux__
 static void onNotifyClick(NotifyNotification* n, char* action, gpointer user_data)
 {
     Q_UNUSED(action);
@@ -52,6 +55,7 @@ static void onNotifyClick(NotifyNotification* n, char* action, gpointer user_dat
     notify_notification_close (n, NULL);
     g_object_unref(G_OBJECT(n));
 }
+#endif
 
 /** \copydoc notify */
 void qcd::TrayIcon::notify(const QString& title, const QString& message, const char* url)

@@ -15,8 +15,7 @@ Check the [TODO file](TODO.md) for more informations.
 * [FatCow](http://fatcow.com)
 * [Paomedia](http://www.paomedia.com)
 
-## Tests
-* Linux
+## Testsed on
   * [v0.9](https://github.com/MrPoxipol/qcodedesk/wiki/Tests-Linux-v0.9)
 * Windows
   * [v0.9](https://github.com/MrPoxipol/qcodedesk/wiki/Tests-Windows-v0.9)

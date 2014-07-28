@@ -16,8 +16,9 @@ Check the [TODO file](TODO.md) for more informations.
 * [Paomedia](http://www.paomedia.com)
 
 ## Testsed on
+* __Linux__
   * [v0.9](https://github.com/MrPoxipol/qcodedesk/wiki/Tests-Linux-v0.9)
-* Windows
+* __Windows__
   * [v0.9](https://github.com/MrPoxipol/qcodedesk/wiki/Tests-Windows-v0.9)
-* OSX
+* __OSX__
   * [v0.9](https://github.com/MrPoxipol/qcodedesk/wiki/Tests-OSX-v0.9)

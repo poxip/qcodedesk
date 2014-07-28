@@ -5,7 +5,6 @@
   - [x] Placeholder **Topic seen** icon (topic not seen)
   - [x] Add notifications (default Qt baloon for Windows, but for Linux **libnotify**)__*__
   - [x] Remove some minor bugs 
-  - [ ] Add menu to the MainWindow
   
 __*__ need to be tested
 * Milestone 1.0

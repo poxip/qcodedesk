@@ -44,8 +44,8 @@ static void onNotifyClick(NotifyNotification* n, char* action, gpointer user_dat
         QUrl url((char*)user_data);
         bool success = QDesktopServices::openUrl(url);
         if (!success)
-            qDebug() << "Unable to open url in browser. Maybe the url is corrupted. \
-                        Specified url: " << url.url();
+            std::cerr << "Unable to open url in browser. Maybe the url is corrupted. "\
+                        "Specified url: " << QSTRING_TO_CHAR(url.url().toString());
     }
 
     // free user data

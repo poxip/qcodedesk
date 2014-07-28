@@ -69,7 +69,6 @@ private Q_SLOTS:
      */
     void messageClicked()
     {
-        qDebug() << "url: " << url_to_open.url();
         QDesktopServices::openUrl(url_to_open);
     }
 

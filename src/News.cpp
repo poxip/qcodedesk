@@ -21,7 +21,7 @@ QString News::fetchXml() const
     QObject::connect(network_manager, SIGNAL(finished(QNetworkReply*)), event_loop, SLOT(quit()));
 
     QNetworkRequest request(QUrl(XML_URL));
-    request.setHeader(QNetworkRequest::UserAgentHeader, "qCodeDesk devel test");
+    request.setHeader(QNetworkRequest::UserAgentHeader, APP_NAME);
 
     QNetworkReply *reply = network_manager->get(request);
     event_loop->exec(QEventLoop::ExcludeUserInputEvents);

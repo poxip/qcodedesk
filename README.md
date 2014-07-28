@@ -15,3 +15,10 @@ Check the [TODO file](TODO.md) for more informations.
 * [FatCow](http://fatcow.com)
 * [Paomedia](http://www.paomedia.com)
 
+## Tests
+* Linux
+  * [v0.9](wiki/Tests-Linux-v0.9)
+* Windows
+  * [v0.9](wiki/Tests-Windows-v0.9)
+* OSX
+  * [v0.9](wiki/Tests-OSX-v0.9)

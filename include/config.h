@@ -7,6 +7,6 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define APP_NAME "qCodeDesk"
+#define APP_NAME "qCodeDesk rev1h"
 
 #endif // CONFIG_H

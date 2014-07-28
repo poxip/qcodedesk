@@ -14,6 +14,7 @@
 #include <iostream>
 #include <vector>
 
+#include "config.h"
 #include "Topic.h"
 
 #define XML_URL "http://cpp0x.pl/xml/"

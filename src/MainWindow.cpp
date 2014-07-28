@@ -23,15 +23,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
 
-    updateNewsView();
-    createNewsThread();
-
     trayIcon->show();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+/** \copydoc setupData */
+void MainWindow::setupData()
+{
+    updateNewsView();
+    createNewsThread();
 }
 
 void MainWindow::createIcons()

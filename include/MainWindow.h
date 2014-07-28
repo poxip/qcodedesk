@@ -30,6 +30,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    /**
+     * @brief Loads news document to the window and creates\
+     *        news timer thread.
+     */
+    void setupData();
+
 private Q_SLOTS:
     // Hide window to irritate the user!
     void closeEvent(QCloseEvent *e);

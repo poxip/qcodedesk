@@ -31,7 +31,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="iconSize">
        <size>
@@ -85,7 +85,7 @@
              <bool>false</bool>
             </property>
             <attribute name="headerVisible">
-             <bool>true</bool>
+             <bool>false</bool>
             </attribute>
             <attribute name="headerCascadingSectionResizes">
              <bool>false</bool>
@@ -162,6 +162,9 @@
               <property name="echoMode">
                <enum>QLineEdit::Normal</enum>
               </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
               <property name="placeholderText">
                <string>user</string>
               </property>
@@ -181,6 +184,9 @@
              <widget class="QLineEdit" name="lineEditPassword">
               <property name="echoMode">
                <enum>QLineEdit::Password</enum>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
               </property>
               <property name="placeholderText">
                <string>•••••</string>

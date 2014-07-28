@@ -48,7 +48,7 @@ void MainWindow::createActions()
     connect(updateAction, SIGNAL(triggered()), this, SLOT(updateNewsView()));
 
     quitAction = new QAction(tr("Zamknij"), this);
-    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    connect(quitAction, SIGNAL(triggered()), this, SLOT(customQuit()));
 }
 
 void MainWindow::createNewsThread()
@@ -69,6 +69,13 @@ void MainWindow::closeEvent(QCloseEvent *e)
     this->hide();
 
     e->ignore();
+}
+
+void MainWindow::customQuit()
+{
+    // Perform some neccessary tasks
+    news_thread->exit();
+    QApplication::quit();
 }
 
 void MainWindow::createTrayIcon()

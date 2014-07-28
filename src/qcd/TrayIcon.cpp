@@ -31,31 +31,8 @@ void qcd::TrayIcon::setIconImages(const QString &normalImagePath,
     icons[State::Normal].addFile(normalImagePath);
     icons[State::Notify].addFile(notifyImagePath);
 
-    setState(State::Notify);
+    setState(State::Normal);
 }
-
-#ifdef __linux__
-static void onNotifyClick(NotifyNotification* n, char* action, gpointer user_data)
-{
-    Q_UNUSED(action);
-
-    if (user_data)
-    {
-        QUrl url((char*)user_data);
-        bool success = QDesktopServices::openUrl(url);
-        if (!success)
-            std::cerr << "Unable to open url in browser. Maybe the url is corrupted. "\
-                        "Specified url: " << QSTRING_TO_CHAR(url.url().toString());
-    }
-
-    // free user data
-    if (user_data)
-        free(user_data);
-
-    notify_notification_close (n, NULL);
-    g_object_unref(G_OBJECT(n));
-}
-#endif
 
 /** \copydoc notify */
 void qcd::TrayIcon::notify(const QString& title, const QString& message, const char* url)
@@ -82,4 +59,40 @@ void qcd::TrayIcon::notify(const QString& title, const QString& message, const c
     url_to_open = QUrl(url);
     showMessage(title, message);
 #endif
+
+    // Change icon to notify the user (if has not clicked the notify baloon)
+    setState(State::Notify);
 }
+
+// Slots
+/** \copydoc messageClicked */
+void qcd::TrayIcon::messageClicked()
+{
+    QDesktopServices::openUrl(url_to_open);
+    setState(State::Normal);
+}
+
+#ifdef __linux__
+static void onNotifyClick(NotifyNotification* n, char* action, gpointer user_data)
+{
+    Q_UNUSED(action);
+
+    if (user_data)
+    {
+        QUrl url((char*)user_data);
+        bool success = QDesktopServices::openUrl(url);
+        if (!success)
+            std::cerr << "Unable to open url in browser. Maybe the url is corrupted. "\
+                        "Specified url: " << QSTRING_TO_CHAR(url.url().toString());
+    }
+
+    // free user data
+    if (user_data)
+        free(user_data);
+
+    notify_notification_close (n, NULL);
+    g_object_unref(G_OBJECT(n));
+
+    setState(State::Normal);
+}
+#endif

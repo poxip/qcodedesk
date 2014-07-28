@@ -67,10 +67,7 @@ private Q_SLOTS:
     /**
      * @brief A callback for default notifications - Qt's showMessage()
      */
-    void messageClicked()
-    {
-        QDesktopServices::openUrl(url_to_open);
-    }
+    void messageClicked();
 
 private:
     QIcon icons[2];

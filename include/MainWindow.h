@@ -64,6 +64,8 @@ private:
     void createTrayIcon();
     void createNewsThread();
 
+    bool eventFilter(QObject* object, QEvent* event);
+
     Ui::MainWindow *ui;
 
     // Tray

@@ -67,6 +67,18 @@ void MainWindow::createNewsThread()
     news_thread->start();
 }
 
+bool MainWindow::eventFilter(QObject* object, QEvent* event)
+{
+    // Is it main window?
+    if (object->objectName().contains(this->objectName()))
+    {
+        if (event->type() == QEvent::FocusIn)
+            trayIcon->setState(qcd::TrayIcon::State::Normal);
+    }
+
+    return false;
+}
+
 // Slots
 void MainWindow::closeEvent(QCloseEvent *e)
 {

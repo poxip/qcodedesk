@@ -47,8 +47,8 @@ bool News::parse(const QString& data)
         auto info_node = doc_elem.elementsByTagName("Information").at(0);
         update_date = info_node.toElement().attribute("CreateDT");
     } catch (std::out_of_range e) {
-        std::cerr << "Out of Range Exception \
-                     while parsing XML news data: " << e.what() << '\n';
+        std::cerr << "Out of Range Exception "\
+                     "while parsing XML news data: " << e.what() << '\n';
 
         return false;
     }
@@ -86,8 +86,8 @@ bool News::parse(const QString& data)
         first_topic = topics.at(0);
     }
     catch (const std::out_of_range e) {
-        std::cerr << "Out of Range Exception \
-                     while parsing XML news data: " << e.what() << '\n';
+        std::cerr << "Out of Range Exception "\
+                     "while parsing XML news data: " << e.what() << '\n';
 
         return false;
     }

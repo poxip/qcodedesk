@@ -114,8 +114,8 @@ void MainWindow::updateNewsView()
     if (!news.update())
     {
         std::cerr << "Cannot fetch or parse XML news document" << '\n';
-        ui->statusBar->showMessage(tr("Wystąpił błąd podczas pobierania \
-                                  lub parsowania listy tematów"));
+        ui->statusBar->showMessage(tr("Wystąpił błąd podczas pobierania "\
+                                  "lub parsowania listy tematów"));
 
         return;
     }
@@ -149,8 +149,8 @@ void MainWindow::updateNewsView()
             trayIcon->notify(title, first_topic.title, QSTRING_TO_CHAR(url));
         }
         catch (const std::out_of_range e) {
-            std::cerr << "Out of Range Exception \
-                         while getting data from parsed document: " << e.what() << '\n';
+            std::cerr << "Out of Range Exception "\
+                         "while getting data from parsed document: " << e.what() << '\n';
 
             return;
         }

@@ -6,7 +6,7 @@
 
 #include "News.h"
 
-const std::size_t News::UPDATE_INTERVAL = SECONDS(60);
+const unsigned int News::UPDATE_INTERVAL = SECONDS(60);
 
 News::News()
 {

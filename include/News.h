@@ -39,7 +39,7 @@ public:
     }
 
     // Milliseconds
-    static const std::size_t UPDATE_INTERVAL;
+    static const unsigned int UPDATE_INTERVAL;
     std::vector <Topic> topics;
 
     // How many times news were updated

@@ -5,7 +5,6 @@ A Qt based cpp0x.pl's Code Desk app.
 ### Platforms
 * Linux
 * Windows
-* OS X
 
 ## Screenshots
 ![Main Window](/screenshots/MainWindow.png?raw=true)
@@ -20,5 +19,3 @@ Check the [TODO file](TODO.md) for more informations.
   * [v0.9](https://github.com/MrPoxipol/qcodedesk/wiki/Tests-Linux-v0.9)
 * __Windows__
   * [v0.9](https://github.com/MrPoxipol/qcodedesk/wiki/Tests-Windows-v0.9)
-* __OSX__
-  * [v0.9](https://github.com/MrPoxipol/qcodedesk/wiki/Tests-OSX-v0.9)

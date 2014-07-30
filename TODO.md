@@ -5,6 +5,7 @@
   - [x] Placeholder **Topic seen** icon (topic not seen)
   - [x] Add notifications (default Qt baloon for Windows, but for Linux **libnotify**)__*__
   - [x] Remove some minor bugs 
+  - [x] Add links to prebuild app packages (to Readme)
   
 * Milestone 1.0
   - [ ] Enable logging to user account by the app (fetching all topics, that can be seen by logged user)

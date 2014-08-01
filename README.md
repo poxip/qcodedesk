@@ -1,6 +1,6 @@
 # qCodeDesk
-
 <img src="/res/qCodeDesk.png?raw=true" width="256" height="256" alt="qCodeDesk logo"/>
+
 A Qt based cpp0x.pl's Code Desk app.
 ## Downloads
 * 0.9 r100 alpha

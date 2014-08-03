@@ -9,6 +9,7 @@ A Qt based cpp0x.pl's Code Desk app.
     * [x86-64](http://pxpl.cf/qcodedesk-r1h-windows-x86-64) (.zip 17MB)<sup>[[issue #3]](https://github.com/MrPoxipol/qcodedesk/issues/3)</sup>
   * __Linux__
     * Not compiled yet, build from source
+
 ## Screenshots
 ![Main Window](/screenshots/MainWindow.png?raw=true)
 

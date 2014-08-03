@@ -10,7 +10,7 @@ A Qt based cpp0x.pl's Code Desk app.
   * __Linux__
     * [x86-64](http://pxpl.cf/qcodedesk-r100-linux-x86-64) (.tar.gz 0.1MB)<sup>[#1]</sup>
  
-<sup>[#1] Only executable. Requires Qt5 and libNotify</sup>
+<sup>[#1] Only executable. Requires Qt5 and libNotify.</sup>
 
 ## Screenshots
 ![Main Window](/screenshots/MainWindow.png?raw=true)

@@ -169,7 +169,7 @@ void MainWindow::updateNewsView()
             QString title = "#" + QString::number(first_topic.id);
             QString url = QString(FORUM_TOPIC_PAATTERN).arg(first_topic.id);
 
-            trayIcon->notify(title, first_topic.title, QSTRING_TO_CHAR(url));
+            trayIcon->notify(title, first_topic.title, QUrl(url));
         }
         catch (const std::out_of_range e) {
             std::cerr << "Out of Range Exception "\

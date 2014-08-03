@@ -13,6 +13,7 @@
 #include <QDesktopServices>
 #include <QIcon>
 #include <QDebug>
+#include <iostream>
 
 #include "config.h"
 
@@ -31,6 +32,16 @@ public:
     {
         Normal,
         Notify
+    };
+
+    struct TrayNotifyData
+    {
+        QUrl url;
+        TrayIcon *tray_icon;
+
+        TrayNotifyData(const QUrl url, TrayIcon *tray_icon)
+            : url(url), tray_icon(tray_icon)
+        {}
     };
 
     explicit TrayIcon(QObject *parent = 0);
@@ -61,7 +72,7 @@ public:
      * @param[in] message Notify message
      * @param[in] url Optional url to open in browser on user click
      */
-    void notify(const QString& title, const QString& message, const char* url = nullptr);
+    void notify(const QString& title, const QString& message, const QUrl url = QUrl());
 
 private Q_SLOTS:
     /**
@@ -75,5 +86,4 @@ private:
     QUrl url_to_open;
 };
 }
-
 #endif // TRAYICON_H

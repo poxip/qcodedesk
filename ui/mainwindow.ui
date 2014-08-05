@@ -22,6 +22,9 @@
     <property name="topMargin">
      <number>0</number>
     </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <property name="spacing">
      <number>6</number>
     </property>
@@ -39,13 +42,7 @@
         <height>16</height>
        </size>
       </property>
-      <property name="elideMode">
-       <enum>Qt::ElideNone</enum>
-      </property>
       <property name="documentMode">
-       <bool>false</bool>
-      </property>
-      <property name="tabsClosable">
        <bool>false</bool>
       </property>
       <property name="movable">
@@ -56,10 +53,51 @@
         <string>Aktualności</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
+        <property name="horizontalSpacing">
+         <number>6</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>3</number>
+        </property>
+        <item row="4" column="0" alignment="Qt::AlignRight">
+         <widget class="QPushButton" name="refreshButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>Odswież</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources.qrc">
+            <normaloff>:/main/res/refresh.png</normaloff>:/main/res/refresh.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>16</width>
+            <height>16</height>
+           </size>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QTreeWidget" name="treeWidget">
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
             <property name="autoScroll">
              <bool>true</bool>
             </property>

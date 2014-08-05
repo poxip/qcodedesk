@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeWidget->header()->setMaximumSectionSize(256);
     connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
             this, SLOT(topicItemDoubleClicked(QTreeWidgetItem*, int)));
+    connect(ui->refreshButton, SIGNAL(clicked()), this, SLOT(updateNewsView()));
 
     createIcons();
     createActions();
@@ -181,4 +182,6 @@ void MainWindow::updateNewsView()
     }
 
     ui->statusBar->showMessage(tr("Zaktualizowano"));
+
+    qDebug() << "News: updated";
 }

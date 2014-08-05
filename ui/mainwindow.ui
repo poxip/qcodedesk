@@ -384,11 +384,6 @@ Licencja: GPLv3</string>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionAboutButton">
-   <property name="text">
-    <string>O programie</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

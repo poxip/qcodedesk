@@ -67,6 +67,25 @@ void MainWindow::createNewsThread()
     news_thread->start();
 }
 
+void MainWindow::createTrayIcon()
+{
+    // Tray icon context menu
+    trayIconMenu = new QMenu(this);
+    trayIconMenu->addAction(windowToggleAction);
+    trayIconMenu->addAction(updateAction);
+    trayIconMenu->addSeparator();
+    trayIconMenu->addAction(quitAction);
+
+    trayIcon = new qcd::TrayIcon(this);
+    trayIcon->setContextMenu(trayIconMenu);
+
+    // Tray icon
+    trayIcon->setIconImages(":/main/res/tray-icon/normal.png",
+                            ":/main/res/tray-icon/notify.png");
+    trayIcon->setState(qcd::TrayIcon::State::Normal);
+}
+
+
 bool MainWindow::eventFilter(QObject* object, QEvent* event)
 {
     // Is it main window?
@@ -92,24 +111,6 @@ void MainWindow::customQuit()
     // Perform some neccessary tasks
     news_thread->exit();
     QApplication::quit();
-}
-
-void MainWindow::createTrayIcon()
-{
-    // Tray icon context menu
-    trayIconMenu = new QMenu(this);
-    trayIconMenu->addAction(windowToggleAction);
-    trayIconMenu->addAction(updateAction);
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(quitAction);
-
-    trayIcon = new qcd::TrayIcon(this);
-    trayIcon->setContextMenu(trayIconMenu);
-
-    // Tray icon
-    trayIcon->setIconImages(":/main/res/tray-icon/normal.png",
-                            ":/main/res/tray-icon/notify.png");
-    trayIcon->setState(qcd::TrayIcon::State::Normal);
 }
 
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)

@@ -53,8 +53,14 @@
         <string>Aktualności</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
-        <property name="spacing">
+        <property name="bottomMargin">
+         <number>3</number>
+        </property>
+        <property name="horizontalSpacing">
          <number>6</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>3</number>
         </property>
         <item row="4" column="0" alignment="Qt::AlignRight">
          <widget class="QPushButton" name="refreshButton">

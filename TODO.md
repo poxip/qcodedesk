@@ -8,6 +8,8 @@
   - [x] Add links to prebuild app packages (to Readme)
   
 * Milestone 1.0
+  - [ ] Show last update time <sup>[[issue #10]](https://github.com/MrPoxipol/qcodedesk/issues/10)</sup>
+  - [ ] Add option to change update interval <sup>[[issue #11]](https://github.com/MrPoxipol/qcodedesk/issues/11)</sup>
   - [ ] Enable signing in to user account by the app (fetching all topics, that can be seen by logged user) <sup>[[issue #7]](https://github.com/MrPoxipol/qcodedesk/issues/7)</sup>
   - [ ] Add **Topic seen** icon to *Topic View* <sup>[issue #8](https://github.com/MrPoxipol/qcodedesk/issues/8)</sup>
   - [ ] Open last read page of topic <sup>[issue #9](https://github.com/MrPoxipol/qcodedesk/issues/3)</sup>

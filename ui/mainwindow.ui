@@ -354,7 +354,7 @@
                </sizepolicy>
               </property>
               <property name="text">
-               <string>CodeDesk (cpp0x.pl) w wersji dla systemów Linux.
+               <string>CodeDesk (cpp0x.pl) w wersji dla systemów Linux i Windows.
 
 Licencja: GPLv3</string>
               </property>

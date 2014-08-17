@@ -8,8 +8,9 @@
   - [x] Add links to prebuild app packages (to Readme)
   
 * Milestone 1.0
-  - [ ] Enable signing in to user account by the app (fetching all topics, that can be seen by logged user)
-  - [ ] Add **Topic seen** icon to *Topic View*
+  - [ ] Enable signing in to user account by the app (fetching all topics, that can be seen by logged user) <sup>[issue #7]</sup>
+  - [ ] Add **Topic seen** icon to *Topic View* <sup>[issue #8]</sup>
+  - [ ] Open last read page of topic <sup>[issue #9]</sup>
   
 ### Have you any ideas what should be added/corrected?
 Contact me: michal.proszek **at** gmail.com

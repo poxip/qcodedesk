@@ -59,8 +59,8 @@ private:
     };
 
     void createIcons();
-    void createActions();
     void createTrayIcon();
+    void configureActions();
     void configureNews();
 
     bool eventFilter(QObject* object, QEvent* event);
@@ -72,10 +72,6 @@ private:
     QMenu *trayIconMenu;
         // Icons
     QIcon stateIcon[2];
-        // Actions
-    QAction *windowToggleAction;
-    QAction *updateAction;
-    QAction *quitAction;
 
     QTimer *news_timer;
     // Data

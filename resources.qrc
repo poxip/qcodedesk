@@ -5,6 +5,8 @@
         <file>res/tray-icon/notify.png</file>
         <file>res/topic/normal.png</file>
         <file>res/topic/seen.png</file>
-        <file>res/refresh.png</file>
+        <file>res/icons/exit.png</file>
+        <file>res/icons/refresh.png</file>
+        <file>res/icons/window.png</file>
     </qresource>
 </RCC>

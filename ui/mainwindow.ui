@@ -68,35 +68,6 @@
         <property name="verticalSpacing">
          <number>3</number>
         </property>
-        <item row="4" column="0" alignment="Qt::AlignRight">
-         <widget class="QPushButton" name="refreshButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="text">
-           <string>Odswież</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../resources.qrc">
-            <normaloff>:/main/res/refresh.png</normaloff>:/main/res/refresh.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>16</width>
-            <height>16</height>
-           </size>
-          </property>
-          <property name="autoExclusive">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0">
           <property name="spacing">
@@ -170,6 +141,28 @@
            </widget>
           </item>
          </layout>
+        </item>
+        <item row="4" column="0" alignment="Qt::AlignRight">
+         <widget class="QToolButton" name="refreshButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextBesideIcon</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -396,6 +389,45 @@ Licencja: GPLv3</string>
    </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/main/res/icons/exit.png</normaloff>:/main/res/icons/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zakończ</string>
+   </property>
+   <property name="toolTip">
+    <string>Kończy działanie aplikacji</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/main/res/icons/refresh.png</normaloff>:/main/res/icons/refresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>Odśwież</string>
+   </property>
+   <property name="toolTip">
+    <string>Aktualizuje listę tematów</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R, F5</string>
+   </property>
+  </action>
+  <action name="actionToggleWindow">
+   <property name="icon">
+    <iconset resource="../resources.qrc">
+     <normaloff>:/main/res/icons/window.png</normaloff>:/main/res/icons/window.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pokaż/Schowaj okno</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

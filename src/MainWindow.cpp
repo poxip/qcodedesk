@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->refreshButton, SIGNAL(clicked()), this, SLOT(performNewsViewUpdate()));
 
     createIcons();
-    createActions();
+    configureActions();
     createTrayIcon();
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
@@ -44,16 +44,13 @@ void MainWindow::createIcons()
     topicNormalIcon.addFile(":/main/res/topic/normal.png");
 }
 
-void MainWindow::createActions()
+void MainWindow::configureActions()
 {
-    windowToggleAction = new QAction(tr("Pokaż/Schowaj okno"), this);
-    connect(windowToggleAction, SIGNAL(triggered()), this, SLOT(toggleWindow()));
+    ui->refreshButton->setDefaultAction(ui->actionRefresh);
 
-    updateAction = new QAction(tr("Sprawdź aktualności"), this);
-    connect(updateAction, SIGNAL(triggered()), this, SLOT(performNewsViewUpdate()));
-
-    quitAction = new QAction(tr("Zamknij"), this);
-    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    connect(ui->actionToggleWindow, SIGNAL(triggered()), this, SLOT(toggleWindow()));
+    connect(ui->actionRefresh, SIGNAL(triggered()), this, SLOT(performNewsViewUpdate()));
+    connect(ui->actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
 void MainWindow::configureNews()
@@ -70,10 +67,10 @@ void MainWindow::createTrayIcon()
 {
     // Tray icon context menu
     trayIconMenu = new QMenu(this);
-    trayIconMenu->addAction(windowToggleAction);
-    trayIconMenu->addAction(updateAction);
+    trayIconMenu->addAction(ui->actionToggleWindow);
+    trayIconMenu->addAction(ui->actionRefresh);
     trayIconMenu->addSeparator();
-    trayIconMenu->addAction(quitAction);
+    trayIconMenu->addAction(ui->actionQuit);
 
     trayIcon = new qcd::TrayIcon(this);
     trayIcon->setContextMenu(trayIconMenu);
@@ -184,11 +181,11 @@ void MainWindow::updateNewsView(bool success)
     ui->statusBar->showMessage(tr("Zaktualizowano"));
 
     qDebug() << "News: updated";
-    ui->refreshButton->setDisabled(false);
+    ui->actionRefresh->setDisabled(false);
 }
 
 void MainWindow::performNewsViewUpdate()
 {
-    ui->refreshButton->setDisabled(true);
+    ui->actionRefresh->setDisabled(true);
     news.update();
 }

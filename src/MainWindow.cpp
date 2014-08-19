@@ -21,10 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
     createIcons();
     configureActions();
     createTrayIcon();
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+    connect(tray_icon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
 
-    trayIcon->show();
+    configureStatusBar();
+
+    tray_icon->show();
 }
 
 MainWindow::~MainWindow()
@@ -41,7 +43,7 @@ void MainWindow::setupData()
 
 void MainWindow::createIcons()
 {
-    topicNormalIcon.addFile(":/main/res/topic/normal.png");
+    topic_normal_icon.addFile(":/main/res/topic/normal.png");
 }
 
 void MainWindow::configureActions()
@@ -51,6 +53,12 @@ void MainWindow::configureActions()
     connect(ui->actionToggleWindow, SIGNAL(triggered()), this, SLOT(toggleWindow()));
     connect(ui->actionRefresh, SIGNAL(triggered()), this, SLOT(performNewsViewUpdate()));
     connect(ui->actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
+}
+
+void MainWindow::configureStatusBar()
+{
+    status_message = new QLabel(tr("Gotowy"));
+    ui->statusBar->insertWidget(0, status_message, 1);
 }
 
 void MainWindow::configureNews()
@@ -66,19 +74,19 @@ void MainWindow::configureNews()
 void MainWindow::createTrayIcon()
 {
     // Tray icon context menu
-    trayIconMenu = new QMenu(this);
-    trayIconMenu->addAction(ui->actionToggleWindow);
-    trayIconMenu->addAction(ui->actionRefresh);
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(ui->actionQuit);
+    tray_icon_menu = new QMenu(this);
+    tray_icon_menu->addAction(ui->actionToggleWindow);
+    tray_icon_menu->addAction(ui->actionRefresh);
+    tray_icon_menu->addSeparator();
+    tray_icon_menu->addAction(ui->actionQuit);
 
-    trayIcon = new qcd::TrayIcon(this);
-    trayIcon->setContextMenu(trayIconMenu);
+    tray_icon = new qcd::TrayIcon(this);
+    tray_icon->setContextMenu(tray_icon_menu);
 
     // Tray icon
-    trayIcon->setIconImages(":/main/res/tray-icon/normal.png",
+    tray_icon->setIconImages(":/main/res/tray-icon/normal.png",
                             ":/main/res/tray-icon/notify.png");
-    trayIcon->setState(qcd::TrayIcon::State::Normal);
+    tray_icon->setState(qcd::TrayIcon::State::Normal);
 }
 
 
@@ -88,7 +96,7 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
     if (object->objectName().contains(this->objectName()))
     {
         if (event->type() == QEvent::FocusIn)
-            trayIcon->setState(qcd::TrayIcon::State::Normal);
+            tray_icon->setState(qcd::TrayIcon::State::Normal);
     }
 
     return false;
@@ -135,10 +143,10 @@ void MainWindow::updateNewsView(bool success)
     if (!success)
     {
         std::cerr << "Cannot fetch or parse XML news document" << '\n';
-        ui->statusBar->showMessage(tr("Wystąpił błąd podczas pobierania "\
+        showStatusMessage(tr("Wystąpił błąd podczas pobierania "\
                                   "lub parsowania listy tematów"));
 
-        ui->refreshButton->setDisabled(false);
+        ui->actionRefresh->setDisabled(false);
         return;
     }
 
@@ -153,7 +161,7 @@ void MainWindow::updateNewsView(bool success)
 
         QString url =  QString(FORUM_TOPIC_PAATTERN).arg(topic.id);
         item->setData(TopicViewColumn::UrlData, Qt::UserRole, url);
-        item->setIcon(0, topicNormalIcon);
+        item->setIcon(0, topic_normal_icon);
 
         ui->treeWidget->addTopLevelItem(item);
     }
@@ -168,7 +176,7 @@ void MainWindow::updateNewsView(bool success)
             QString title = "#" + QString::number(first_topic.id);
             QString url = QString(FORUM_TOPIC_PAATTERN).arg(first_topic.id);
 
-            trayIcon->notify(title, first_topic.title, QUrl(url));
+            tray_icon->notify(title, first_topic.title, QUrl(url));
         }
         catch (const std::out_of_range e) {
             std::cerr << "Out of Range Exception "\
@@ -178,9 +186,10 @@ void MainWindow::updateNewsView(bool success)
         }
     }
 
-    ui->statusBar->showMessage(tr("Zaktualizowano"));
-
     qDebug() << "News: updated";
+
+    QDateTime now = QDateTime::currentDateTime();
+    showStatusMessage(tr("Ostatnia aktualizacja ") + now.toString("hh:mm:ss"));
     ui->actionRefresh->setDisabled(false);
 }
 

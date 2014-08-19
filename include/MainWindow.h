@@ -8,6 +8,7 @@
 #define MAINWINDOW_H
 
 #include <QtCore>
+#include <QDateTime>
 #include <QtGui>
 #include <QtWidgets>
 
@@ -61,24 +62,31 @@ private:
     void createIcons();
     void createTrayIcon();
     void configureActions();
+    void configureStatusBar();
     void configureNews();
+
+    inline void showStatusMessage(const QString& message)
+    {
+        status_message->setText(message);
+    }
 
     bool eventFilter(QObject* object, QEvent* event);
 
     Ui::MainWindow *ui;
+    QLabel *status_message;
 
     // Tray
-    qcd::TrayIcon *trayIcon;
-    QMenu *trayIconMenu;
+    qcd::TrayIcon *tray_icon;
+    QMenu *tray_icon_menu;
         // Icons
-    QIcon stateIcon[2];
+    QIcon state_icon[2];
 
     QTimer *news_timer;
     // Data
     News news;
 
     // Misc
-    QIcon topicNormalIcon;
+    QIcon topic_normal_icon;
 };
 
 #endif // MAINWINDOW_H

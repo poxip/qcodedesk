@@ -117,8 +117,16 @@ void MainWindow::customQuit()
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     switch(reason) {
-    case QSystemTrayIcon::ActivationReason::Trigger:
     case QSystemTrayIcon::ActivationReason::DoubleClick:
+        // BUGFIX issue #14
+        if (isMinimized())
+        {
+            showNormal();
+            activateWindow();
+
+            break;
+        }
+
         toggleWindow();
         break;
     default:

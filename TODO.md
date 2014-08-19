@@ -9,7 +9,7 @@
   * 0.9-stable
     - [x] Remove bug <sup>[[issue #13]](https://github.com/MrPoxipol/qcodedesk/issues/13)</sup>
     - [x] Remove bug <sup>[[issue #14]](https://github.com/MrPoxipol/qcodedesk/issues/14)</sup>
-    - [ ] Show last update time <sup>[[issue #10]](https://github.com/MrPoxipol/qcodedesk/issues/10)</sup>
+    - [x] Show last update time <sup>[[issue #10]](https://github.com/MrPoxipol/qcodedesk/issues/10)</sup>
     - [ ] Add option to change update interval <sup>[[issue #11]](https://github.com/MrPoxipol/qcodedesk/issues/11)</sup>
     - [ ] Add option to add program to the sys autostart <sup>[[issue #12]](https://github.com/MrPoxipol/qcodedesk/issues/12)</sup>
 * Milestone 1.0-beta

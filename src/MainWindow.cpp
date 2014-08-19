@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeWidget->header()->setMaximumSectionSize(256);
     connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
             this, SLOT(topicItemDoubleClicked(QTreeWidgetItem*, int)));
-    connect(ui->refreshButton, SIGNAL(clicked()), this, SLOT(updateNewsView()));
+    connect(ui->refreshButton, SIGNAL(clicked()), this, SLOT(performNewsViewUpdate()));
 
     createIcons();
     createActions();
@@ -35,8 +35,8 @@ MainWindow::~MainWindow()
 /** \copydoc setupData */
 void MainWindow::setupData()
 {
-    updateNewsView();
-    createNewsThread();
+    performNewsViewUpdate();
+    configureNews();
 }
 
 void MainWindow::createIcons()
@@ -50,22 +50,20 @@ void MainWindow::createActions()
     connect(windowToggleAction, SIGNAL(triggered()), this, SLOT(toggleWindow()));
 
     updateAction = new QAction(tr("Sprawdź aktualności"), this);
-    connect(updateAction, SIGNAL(triggered()), this, SLOT(updateNewsView()));
+    connect(updateAction, SIGNAL(triggered()), this, SLOT(performNewsViewUpdate()));
 
     quitAction = new QAction(tr("Zamknij"), this);
-    connect(quitAction, SIGNAL(triggered()), this, SLOT(customQuit()));
+    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
-void MainWindow::createNewsThread()
+void MainWindow::configureNews()
 {
-    news_timer = new QTimer();
+    news_timer = new QTimer(this);
     news_timer->setInterval(News::UPDATE_INTERVAL);
     news_timer->start();
-    connect(news_timer, SIGNAL(timeout()), SLOT(updateNewsView()));
+    connect(news_timer, SIGNAL(timeout()), SLOT(performNewsViewUpdate()));
 
-    news_thread = new QThread(this);
-    news_timer->moveToThread(news_thread);
-    news_thread->start();
+    connect(&news, SIGNAL(updateFinished(bool)), this, SLOT(updateNewsView(bool)));
 }
 
 void MainWindow::createTrayIcon()
@@ -107,13 +105,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
     e->ignore();
 }
 
-void MainWindow::customQuit()
-{
-    // Perform some neccessary tasks
-    news_thread->exit();
-    QApplication::quit();
-}
-
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     switch(reason) {
@@ -142,14 +133,15 @@ void MainWindow::topicItemDoubleClicked(QTreeWidgetItem* item, int column)
     QDesktopServices::openUrl(url);
 }
 
-void MainWindow::updateNewsView()
+void MainWindow::updateNewsView(bool success)
 {
-    if (!news.update())
+    if (!success)
     {
         std::cerr << "Cannot fetch or parse XML news document" << '\n';
         ui->statusBar->showMessage(tr("Wystąpił błąd podczas pobierania "\
                                   "lub parsowania listy tematów"));
 
+        ui->refreshButton->setDisabled(false);
         return;
     }
 
@@ -192,4 +184,11 @@ void MainWindow::updateNewsView()
     ui->statusBar->showMessage(tr("Zaktualizowano"));
 
     qDebug() << "News: updated";
+    ui->refreshButton->setDisabled(false);
+}
+
+void MainWindow::performNewsViewUpdate()
+{
+    ui->refreshButton->setDisabled(true);
+    news.update();
 }

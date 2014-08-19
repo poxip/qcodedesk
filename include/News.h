@@ -10,6 +10,8 @@
 #include <QtCore>
 #include <QtNetwork>
 #include <QtXml>
+#include <QFuture>
+#include <QtConcurrent/QtConcurrentRun>
 
 #include <iostream>
 #include <vector>
@@ -22,14 +24,15 @@
 
 class News : public QObject
 {
+    Q_OBJECT
+
 public:
     News();
 
     /**
      * @brief fetches cpp0x.pl/xml and updates news data
-     * @return \b true if update was complete successfull, otherwise \b false
      */
-    bool update();
+    void update();
     /**
      * @brief Checks for new posts
      * @return \b true if new posts otherwise \b false
@@ -46,18 +49,20 @@ public:
     // How many times news were updated
     std::size_t updates_count;
 
-private:
+Q_SIGNALS:
     /**
-     * @brief polls cpp0x.pl/xml for XML file
-     * @return A QString object filled with XML data (plain text)
+     * @brief Emmited when the update triggered by update() has been finished
+     * @param[in] success True if update was successfull, otherwise false
      */
-    QString fetchXml() const;
+    void updateFinished(bool success);
+
+private:
     /**
      * @brief Parses XML and updates topics list
      * @param[i] data A XML data
-     * @return \b true if parsing was complete successfull, otherwise \b false
      */
-    bool parse(const QString& data);
+    inline void parse(const QString& data);
+    bool _parse(const QString& data);
 
     QNetworkAccessManager *network_manager;
 
@@ -68,6 +73,9 @@ private:
 
     QString last_update_date;
     Topic last_first_topic;
+
+private Q_SLOTS:
+    void performParsing(QNetworkReply* reply);
 };
 
 #endif // NEWS_H

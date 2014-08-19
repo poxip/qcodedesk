@@ -14,24 +14,8 @@ News::News()
     updates_count = 0;
 }
 
-/** \copydoc fetchXml */
-QString News::fetchXml() const
-{
-    QEventLoop *event_loop = new QEventLoop();
-    QObject::connect(network_manager, SIGNAL(finished(QNetworkReply*)), event_loop, SLOT(quit()));
 
-    QNetworkRequest request(QUrl(XML_URL));
-    request.setHeader(QNetworkRequest::UserAgentHeader, APP_NAME);
-
-    QNetworkReply *reply = network_manager->get(request);
-    event_loop->exec(QEventLoop::ExcludeUserInputEvents);
-
-    QByteArray reply_data = reply->readAll();
-    return reply_data;
-}
-
-/** \copydoc parse */
-bool News::parse(const QString& data)
+bool News::_parse(const QString& data)
 {
     topics.clear();
 
@@ -100,12 +84,29 @@ bool News::parse(const QString& data)
     return true;
 }
 
-/** \copydoc update */
-bool News::update()
+/** \copydoc parse */
+void News::parse(const QString& data)
 {
-    QString data = fetchXml();
-    if (data.isNull())
-        return false;
+    Q_EMIT updateFinished(_parse(data));
+}
 
-    return parse(data);
+void News::performParsing(QNetworkReply* reply)
+{
+    QByteArray data = reply->readAll();
+
+    if (data.isNull())
+        return;
+
+    QtConcurrent::run(this, &News::parse, data);
+}
+
+/** \copydoc update */
+void News::update()
+{
+    connect(network_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(performParsing(QNetworkReply*)));
+
+    QNetworkRequest request(QUrl(XML_URL));
+    request.setHeader(QNetworkRequest::UserAgentHeader, APP_NAME);
+
+    network_manager->get(request);
 }

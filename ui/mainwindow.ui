@@ -154,7 +154,11 @@
            <enum>Qt::LeftToRight</enum>
           </property>
           <property name="text">
-           <string/>
+           <string>Odśwież</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resources.qrc">
+            <normaloff>:/main/res/icons/refresh.png</normaloff>:/main/res/icons/refresh.png</iconset>
           </property>
           <property name="autoExclusive">
            <bool>false</bool>

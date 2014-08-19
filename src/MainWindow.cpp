@@ -137,6 +137,11 @@ void MainWindow::topicItemDoubleClicked(QTreeWidgetItem* item, int column)
     QDesktopServices::openUrl(url);
 }
 
+void MainWindow::releaseRefreshAction()
+{
+    ui->actionRefresh->setEnabled(true);
+}
+
 void MainWindow::updateNewsView(bool success)
 {
     if (!success)
@@ -145,7 +150,7 @@ void MainWindow::updateNewsView(bool success)
         showStatusMessage(tr("Wystąpił błąd podczas pobierania "\
                                   "lub parsowania listy tematów"));
 
-        ui->actionRefresh->setDisabled(false);
+        ui->actionRefresh->setEnabled(true);
         return;
     }
 
@@ -189,7 +194,8 @@ void MainWindow::updateNewsView(bool success)
 
     QDateTime now = QDateTime::currentDateTime();
     showStatusMessage(tr("Ostatnia aktualizacja ") + now.toString("hh:mm:ss"));
-    ui->actionRefresh->setDisabled(false);
+
+    QTimer::singleShot(SECONDS(10), this, SLOT(releaseRefreshAction()));
 }
 
 void MainWindow::performNewsViewUpdate()

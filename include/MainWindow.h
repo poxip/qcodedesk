@@ -12,6 +12,7 @@
 #include <QtGui>
 #include <QtWidgets>
 
+#include <functional>
 #include <iostream>
 
 #include "qcd/TrayIcon.h"
@@ -46,6 +47,7 @@ private Q_SLOTS:
     void toggleWindow() { setVisible(!isVisible()); }
     void topicItemDoubleClicked(QTreeWidgetItem* item, int column);
     // News update slot
+    void releaseRefreshAction();
     void performNewsViewUpdate();
     void updateNewsView(bool);
 

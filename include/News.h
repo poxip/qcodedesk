@@ -20,7 +20,12 @@
 #include "Topic.h"
 
 #define XML_URL "http://cpp0x.pl/xml/"
+
 #define SECONDS(a) a*1000
+#define MINUTES(a) SECONDS(a*60)
+
+#define MS_TO_SECONDS(a) a/1000
+#define MS_TO_MINUTES(a) MS_TO_SECONDS(a)/60
 
 class News : public QObject
 {
@@ -43,7 +48,7 @@ public:
     }
 
     // Milliseconds
-    static const unsigned int UPDATE_INTERVAL;
+    static uint update_interval;
     std::vector <Topic> topics;
 
     // How many times news were updated

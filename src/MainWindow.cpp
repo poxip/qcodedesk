@@ -12,10 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    ui->treeWidget->header()->setMaximumSectionSize(256);
-    connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
-            this, SLOT(topicItemDoubleClicked(QTreeWidgetItem*, int)));
+    loadSettings();
 
     createIcons();
     configureActions();
@@ -23,7 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tray_icon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             this, SLOT(trayIconActivated(QSystemTrayIcon::ActivationReason)));
 
-    configureStatusBar();
+    configureGui();
+    configureNews();
 
     tray_icon->show();
 }
@@ -33,11 +31,38 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-/** \copydoc setupData */
-void MainWindow::setupData()
+// Settings
+void MainWindow::loadSettings()
 {
-    performNewsViewUpdate();
-    configureNews();
+    QSettings settings(SETTINGS_FILENAME, SETTINGS_FORMAT);
+    qDebug() << "settings: loaded - keys: " << settings.allKeys();
+
+    // load
+    uint update_interval = settings.value(SKEY_UPDATE_INTERVAL, 1).toUInt();
+    if (update_interval < 1) update_interval = 1;
+    update_interval = MINUTES(update_interval); // convert to ms
+
+    // set
+    News::update_interval = update_interval;
+    // Set interval only on settings reload
+    if (news_timer)
+        news_timer->setInterval(News::update_interval);
+
+    ui->updateIntervalSpinBox->setValue(MS_TO_MINUTES(update_interval));
+}
+
+void MainWindow::saveSettings()
+{
+    QSettings settings(SETTINGS_FILENAME, SETTINGS_FORMAT);
+
+    uint update_interval = ui->updateIntervalSpinBox->value();
+    if (update_interval < 1) update_interval = 1;
+    settings.setValue(SKEY_UPDATE_INTERVAL, update_interval);
+
+    qDebug() << "settings: saved";
+    ui->statusBar->showMessage("Zapisano", SECONDS(2));
+
+    loadSettings();
 }
 
 void MainWindow::createIcons()
@@ -54,6 +79,21 @@ void MainWindow::configureActions()
     connect(ui->actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
 
+void MainWindow::configureGui()
+{
+    // Tree widget
+    ui->treeWidget->header()->setMaximumSectionSize(256);
+    connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
+            this, SLOT(topicItemDoubleClicked(QTreeWidgetItem*, int)));
+
+    // Save button
+    connect(ui->saveSettingsButton, &QPushButton::clicked, [=]() {
+        saveSettings();
+    });
+
+    configureStatusBar();
+}
+
 void MainWindow::configureStatusBar()
 {
     status_message = new QLabel(tr("Gotowy"));
@@ -62,8 +102,10 @@ void MainWindow::configureStatusBar()
 
 void MainWindow::configureNews()
 {
+    performNewsViewUpdate();
+
     news_timer = new QTimer(this);
-    news_timer->setInterval(News::UPDATE_INTERVAL);
+    news_timer->setInterval(News::update_interval);
     news_timer->start();
     connect(news_timer, SIGNAL(timeout()), SLOT(performNewsViewUpdate()));
 

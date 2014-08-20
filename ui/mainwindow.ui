@@ -100,10 +100,10 @@
              <bool>false</bool>
             </property>
             <property name="headerHidden">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <attribute name="headerVisible">
-             <bool>true</bool>
+             <bool>false</bool>
             </attribute>
             <attribute name="headerCascadingSectionResizes">
              <bool>false</bool>
@@ -176,7 +176,10 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <layout class="QVBoxLayout" name="verticalLayout_5">
+         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
           <property name="leftMargin">
            <number>6</number>
           </property>
@@ -185,6 +188,15 @@
           </property>
           <item>
            <layout class="QFormLayout" name="formLayout">
+            <property name="fieldGrowthPolicy">
+             <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+            </property>
+            <property name="labelAlignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <property name="formAlignment">
+             <set>Qt::AlignHCenter|Qt::AlignTop</set>
+            </property>
             <property name="horizontalSpacing">
              <number>10</number>
             </property>
@@ -192,61 +204,59 @@
              <number>6</number>
             </property>
             <item row="0" column="0">
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="updateIntervalLabel">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
-               <string>Login</string>
+               <string>Częstość aktualizacji</string>
               </property>
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEditLogin">
-              <property name="inputMask">
-               <string notr="true"/>
+             <widget class="QSpinBox" name="updateIntervalSpinBox">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
-              <property name="echoMode">
-               <enum>QLineEdit::Normal</enum>
+              <property name="layoutDirection">
+               <enum>Qt::LeftToRight</enum>
               </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-              <property name="placeholderText">
-               <string>user</string>
-              </property>
-              <property name="clearButtonEnabled">
+              <property name="wrapping">
                <bool>false</bool>
               </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_2">
-              <property name="text">
-               <string>Hasło</string>
+              <property name="showGroupSeparator" stdset="0">
+               <bool>false</bool>
               </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEditPassword">
-              <property name="echoMode">
-               <enum>QLineEdit::Password</enum>
+              <property name="suffix">
+               <string> min</string>
               </property>
-              <property name="readOnly">
-               <bool>true</bool>
+              <property name="minimum">
+               <number>1</number>
               </property>
-              <property name="placeholderText">
-               <string>•••••</string>
+              <property name="maximum">
+               <number>360</number>
               </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QPushButton" name="pushButton">
-              <property name="text">
-               <string>Zapisz</string>
+              <property name="value">
+               <number>1</number>
               </property>
              </widget>
             </item>
            </layout>
           </item>
          </layout>
+        </item>
+        <item row="1" column="0" alignment="Qt::AlignRight">
+         <widget class="QPushButton" name="saveSettingsButton">
+          <property name="text">
+           <string>Zapisz</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

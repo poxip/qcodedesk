@@ -4,8 +4,17 @@
   * @brief  Main application file.
   */
 
-#include "MainWindow.h"
 #include <QApplication>
+#include "MainWindow.h"
+
+#include "config.h"
+
+void setMetadata()
+{
+    QCoreApplication::setOrganizationName(ORGANIZATION_NAME);
+    QCoreApplication::setOrganizationDomain(ORGANIZATION_DOMAIN);
+    QCoreApplication::setApplicationName(APP_NAME);
+}
 
 int main(int argc, char *argv[])
 {
@@ -14,7 +23,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     a.installEventFilter(&w);
     w.show();
-    w.setupData();
 
     return a.exec();
 }

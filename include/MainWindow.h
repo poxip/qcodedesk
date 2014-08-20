@@ -15,6 +15,7 @@
 #include <functional>
 #include <iostream>
 
+#include "config.h"
 #include "qcd/TrayIcon.h"
 #include "News.h"
 
@@ -32,12 +33,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    /**
-     * @brief Loads news document to the window and creates\
-     *        news timer thread.
-     */
-    void setupData();
-
 private Q_SLOTS:
     // Hide window to irritate the user!
     void closeEvent(QCloseEvent *e);
@@ -51,6 +46,7 @@ private Q_SLOTS:
     void performNewsViewUpdate();
     void updateNewsView(bool);
 
+
 private:
     enum TopicViewColumn
     {
@@ -61,9 +57,13 @@ private:
         UrlData
     };
 
+    void loadSettings();
+    void saveSettings();
+
     void createIcons();
     void createTrayIcon();
     void configureActions();
+    void configureGui();
     void configureStatusBar();
     void configureNews();
 

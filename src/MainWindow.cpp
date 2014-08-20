@@ -243,5 +243,6 @@ void MainWindow::updateNewsView(bool success)
 void MainWindow::performNewsViewUpdate()
 {
     ui->actionRefresh->setDisabled(true);
+    showStatusMessage(tr("Aktualizuję.."));
     news.update();
 }

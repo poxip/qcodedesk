@@ -203,7 +203,10 @@ void MainWindow::updateNewsView(bool success)
         QTreeWidgetItem *item = new QTreeWidgetItem();
         item->setText(TopicViewColumn::Title, topic.title);
         item->setText(TopicViewColumn::PostCount, QString::number(topic.post_count));
-        item->setText(TopicViewColumn::LastUpdate, topic.update_date);
+
+        // Last update - $data by $last_user
+        QString last_update = tr("%1 przez %2").arg(topic.update_date, topic.last_user);
+        item->setText(TopicViewColumn::LastUpdate, last_update);
 
         QString url =  QString(FORUM_TOPIC_PAATTERN).arg(topic.id);
         item->setData(TopicViewColumn::UrlData, Qt::UserRole, url);
@@ -219,7 +222,10 @@ void MainWindow::updateNewsView(bool success)
     {
         try {
             Topic first_topic = news.topics.at(0);
-            QString title = "#" + QString::number(first_topic.id);
+            QString title = tr("#%1 przez %2").arg(
+                QString::number(first_topic.id),
+                first_topic.last_user
+            );
             QString url = QString(FORUM_TOPIC_PAATTERN).arg(first_topic.id);
 
             tray_icon->notify(title, first_topic.title, QUrl(url));

@@ -53,6 +53,7 @@ bool News::_parse(const QString& data)
         Topic topic;
         topic.id            = e.attribute("Id").toUInt();
         topic.forum_section = e.attribute("ParentId").toUInt();
+        topic.last_user     = e.attribute("LastUserNick");
         topic.update_date   = e.attribute("UpdateDT");
         topic.post_count    = e.attribute("PostCount").toUInt();
 
@@ -62,6 +63,7 @@ bool News::_parse(const QString& data)
             return false;
 
         topic.title = title_element.text();
+        if (topic.title == "") topic.title = tr("Nienazwany");
         topics.push_back(topic);
     }
 
@@ -107,6 +109,5 @@ void News::update()
 
     QNetworkRequest request(QUrl(XML_URL));
     request.setHeader(QNetworkRequest::UserAgentHeader, APP_NAME);
-
     network_manager->get(request);
 }

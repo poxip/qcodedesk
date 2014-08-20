@@ -19,6 +19,7 @@ void setMetadata()
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    setMetadata();
 
     MainWindow w;
     a.installEventFilter(&w);

@@ -49,6 +49,17 @@ void MainWindow::loadSettings()
         news_timer->setInterval(News::update_interval);
 
     ui->updateIntervalSpinBox->setValue(MS_TO_MINUTES(update_interval));
+
+    // Autorun option
+#ifdef Q_OS_WIN
+    QSettings reg(
+        "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+        QSettings::NativeFormat
+    );
+
+    bool autorun = reg.value(APP_NAME, false).toBool();
+    ui->autorunCheckBox->setChecked(autorun);
+#endif // Q_OS_WIN
 }
 
 void MainWindow::saveSettings()
@@ -58,6 +69,24 @@ void MainWindow::saveSettings()
     uint update_interval = ui->updateIntervalSpinBox->value();
     if (update_interval < 1) update_interval = 1;
     settings.setValue(SKEY_UPDATE_INTERVAL, update_interval);
+
+    // Autorun option
+#ifdef Q_OS_WIN
+    QSettings reg(
+        "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+        QSettings::NativeFormat
+    );
+    bool autorun = ui->autorunCheckBox->isChecked();
+    if (autorun)
+    {
+        reg.setValue(APP_NAME,
+            QCoreApplication::applicationFilePath().replace('/', '\\')
+        );
+    }
+    else
+        reg.remove(APP_NAME);
+
+#endif // Q_OS_WIN
 
     qDebug() << "settings: saved";
     ui->statusBar->showMessage("Zapisano", SECONDS(2));
@@ -92,6 +121,13 @@ void MainWindow::configureGui()
     });
 
     configureStatusBar();
+
+    // Settings tab
+#ifdef Q_OS_LINUX
+    // Hide autorun option for Linux because, for Linux we have a shell script
+    ui->autorunLabel->hide();
+    ui->autorunCheckBox->hide();
+#endif // Q_OS_LINUX
 }
 
 void MainWindow::configureStatusBar()

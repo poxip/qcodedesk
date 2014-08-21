@@ -17,9 +17,9 @@
 
 #include "config.h"
 
-#ifdef __linux__
+#ifdef Q_OS_LINUX
 #include <libnotify/notify.h>
-#endif
+#endif // Q_OS_LINUX
 
 #define QSTRING_TO_CHAR(qstring) qstring.toUtf8().constData()
 

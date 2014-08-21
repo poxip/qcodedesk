@@ -80,7 +80,7 @@ void MainWindow::saveSettings()
     if (autorun)
     {
         reg.setValue(APP_NAME,
-            QCoreApplication::applicationFilePath().replace('/', '\\')
+            QCoreApplication::applicationFilePath().replace('/', '\\') + " --minimalized"
         );
     }
     else

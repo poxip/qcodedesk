@@ -9,19 +9,19 @@ qcd::TrayIcon::TrayIcon(QObject *parent) :
     QSystemTrayIcon(parent)
 {
     // if __linux__ initialize libnotify
-#ifdef __linux__
+#ifdef Q_OS_LINUX_
     notify_init(APP_NAME);
 #else
     // set default Qt's messageClicked() callback
     connect(this, SIGNAL(messageClicked()), this, SLOT(messageClicked()));
-#endif
+#endif // Q_OS_LINUX
 }
 
 qcd::TrayIcon::~TrayIcon()
 {
-#ifdef __linux__
+#ifdef Q_OS_LINUX
     notify_uninit();
-#endif
+#endif // Q_OS_LINUX
 }
 
 /** \copydoc setIconImages */
@@ -34,7 +34,7 @@ void qcd::TrayIcon::setIconImages(const QString &normalImagePath,
     setState(State::Normal);
 }
 
-#ifdef __linux__
+#ifdef Q_OS_LINUX
 static void onNotifyClick(NotifyNotification* n, char* action, gpointer user_data)
 {
     Q_UNUSED(action);
@@ -61,7 +61,7 @@ static void onNotifyClick(NotifyNotification* n, char* action, gpointer user_dat
     notify_notification_close (n, NULL);
     g_object_unref(G_OBJECT(n));
 }
-#endif
+#endif // Q_OS_LINUX
 
 /** \copydoc notify */
 void qcd::TrayIcon::notify(const QString& title, const QString& message, const QUrl url)
@@ -72,7 +72,7 @@ void qcd::TrayIcon::notify(const QString& title, const QString& message, const Q
         return;
     }
 
-#ifdef __linux__
+#ifdef Q_OS_LINUX
     NotifyNotification *popup = notify_notification_new(
                 QSTRING_TO_CHAR(title),
                 QSTRING_TO_CHAR(message),
@@ -92,7 +92,7 @@ void qcd::TrayIcon::notify(const QString& title, const QString& message, const Q
 #else
     url_to_open = QUrl(url);
     showMessage(title, message);
-#endif
+#endif // Q_OS_LINUX
 
     // Change icon to notify the user (if has not clicked the notify baloon)
     setState(State::Notify);

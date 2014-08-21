@@ -7,7 +7,11 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define APP_NAME "qCodeDesk rev1h"
+#define APP_NAME "qCodeDesk"
+#define APP_VERSION "0.9-stable"
+#define APP_DESCRIPTION "Written in C++ and Qt5 \
+cpp0x.pl/codedesk app for Linux and Windows"
+
 #define ORGANIZATION_NAME "mrpoxipol-dev"
 #define ORGANIZATION_DOMAIN "poxip.ml"
 

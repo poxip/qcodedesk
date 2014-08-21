@@ -13,17 +13,31 @@ void setMetadata()
 {
     QCoreApplication::setOrganizationName(ORGANIZATION_NAME);
     QCoreApplication::setOrganizationDomain(ORGANIZATION_DOMAIN);
+
     QCoreApplication::setApplicationName(APP_NAME);
+    QCoreApplication::setApplicationVersion(APP_VERSION);
 }
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
     setMetadata();
 
-    MainWindow w;
-    a.installEventFilter(&w);
-    w.show();
+    QCommandLineParser cargs;
+    cargs.setApplicationDescription(APP_DESCRIPTION);
+    cargs.addHelpOption();cargs.addVersionOption();
+    QCommandLineOption minimalized_option(
+        "minimalized",
+        "Starts application minimalized to the tray"
+    );
+    cargs.addOption(minimalized_option);
+    cargs.process(app);
 
-    return a.exec();
+    MainWindow window;
+    app.installEventFilter(&window);
+    // Prevent showing window if app've been launched on autorun
+    if (!cargs.isSet(minimalized_option))
+        window.show();
+
+    return app.exec();
 }

@@ -146,7 +146,8 @@ void MainWindow::configureNews()
     news_timer->start();
     connect(news_timer, SIGNAL(timeout()), SLOT(performNewsViewUpdate()));
 
-    connect(&news, SIGNAL(updateFinished(bool)), this, SLOT(updateNewsView(bool)));
+    connect(&news, SIGNAL(updateFinished(bool, const QString&)),
+            this, SLOT(updateNewsView(bool, const QString&)));
 }
 
 void MainWindow::createTrayIcon()
@@ -221,11 +222,11 @@ void MainWindow::releaseRefreshAction()
     ui->actionRefresh->setEnabled(true);
 }
 
-void MainWindow::updateNewsView(bool success)
+void MainWindow::updateNewsView(bool success, const QString &error_desc)
 {
     if (!success)
     {
-        std::cerr << "Cannot fetch or parse XML news document" << '\n';
+        qDebug() << "Cannot fetch or parse XML news document: " << error_desc;
         showStatusMessage(tr("Wystąpił błąd podczas pobierania "\
                                   "lub parsowania listy tematów"));
 

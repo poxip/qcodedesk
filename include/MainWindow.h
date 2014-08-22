@@ -44,7 +44,7 @@ private Q_SLOTS:
     // News update slot
     void releaseRefreshAction();
     void performNewsViewUpdate();
-    void updateNewsView(bool);
+    void updateNewsView(bool success, const QString &error_desc);
 
 
 private:

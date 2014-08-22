@@ -58,16 +58,17 @@ Q_SIGNALS:
     /**
      * @brief Emmited when the update triggered by update() has been finished
      * @param[in] success True if update was successfull, otherwise false
+     * @param[in] error_desc Describes an error (if occured)
      */
-    void updateFinished(bool success);
+    void updateFinished(bool success, const QString &error_desc = "");
 
 private:
     /**
      * @brief Parses XML and updates topics list
      * @param[i] data A XML data
      */
-    inline void parse(const QString& data);
-    bool _parse(const QString& data);
+    inline void parse(const QString &data);
+    bool _parse(const QString &data);
 
     QNetworkAccessManager *network_manager;
 
@@ -80,7 +81,8 @@ private:
     Topic last_first_topic;
 
 private Q_SLOTS:
-    void performParsing(QNetworkReply* reply);
+    void connectionError(const QNetworkReply::NetworkError error);
+    void performParsing(QNetworkReply *reply);
 };
 
 #endif // NEWS_H

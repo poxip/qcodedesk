@@ -15,7 +15,7 @@ News::News()
 }
 
 
-bool News::_parse(const QString& data)
+bool News::_parse(const QString &data)
 {
     topics.clear();
 
@@ -87,12 +87,12 @@ bool News::_parse(const QString& data)
 }
 
 /** \copydoc parse */
-void News::parse(const QString& data)
+void News::parse(const QString &data)
 {
     Q_EMIT updateFinished(_parse(data));
 }
 
-void News::performParsing(QNetworkReply* reply)
+void News::performParsing(QNetworkReply *reply)
 {
     QByteArray data = reply->readAll();
 
@@ -102,12 +102,24 @@ void News::performParsing(QNetworkReply* reply)
     QtConcurrent::run(this, &News::parse, data);
 }
 
+void News::connectionError(const QNetworkReply::NetworkError error)
+{
+    Q_UNUSED(error);
+
+    QNetworkReply *reply = static_cast <QNetworkReply*>(sender());
+    Q_EMIT updateFinished(false, reply->errorString());
+}
+
 /** \copydoc update */
 void News::update()
 {
-    connect(network_manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(performParsing(QNetworkReply*)));
+    connect(network_manager, SIGNAL(finished(QNetworkReply*)),
+            this, SLOT(performParsing(QNetworkReply*)));
 
     QNetworkRequest request(QUrl(XML_URL));
     request.setHeader(QNetworkRequest::UserAgentHeader, APP_NAME);
-    network_manager->get(request);
+
+    QNetworkReply *reply = network_manager->get(request);
+    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)),
+            this, SLOT(connectionError(QNetworkReply::NetworkError)));
 }

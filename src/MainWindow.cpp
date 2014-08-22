@@ -87,12 +87,27 @@ void MainWindow::saveSettings()
     else
         reg.remove(APP_NAME);
 
+    if (reg.status() != QSettings::NoError)
+        qDebug() << "Error occured: cannot save key to MS Windows registry!";
+
 #endif // Q_OS_WIN
 
-    qDebug() << "settings: saved";
-    ui->statusBar->showMessage("Zapisano", SECONDS(2));
+    settings.sync();
+    if (settings.status() == QSettings::NoError)
+    {
+        qDebug() << "settings: saved";
+        ui->statusBar->showMessage(tr("Zapisano"), SECONDS(2));
 
-    loadSettings();
+        loadSettings();
+    }
+    else
+    {
+        qDebug() << "settings: unable to save settings";
+        ui->statusBar->showMessage(
+            tr("Nie udało się zapisać ustawień"),
+            SECONDS(2)
+        );
+    }
 }
 
 void MainWindow::createIcons()

@@ -48,8 +48,8 @@ static void onNotifyClick(NotifyNotification* n, char* action, gpointer user_dat
         QUrl url(tray_data->url);
         bool success = QDesktopServices::openUrl(url);
         if (!success)
-            std::cerr << "Unable to open url in browser. Maybe the url is corrupted. "\
-                        "Specified url: " << QSTRING_TO_CHAR(url.url()) << '\n';
+            qDebug() << "Unable to open url in browser. Maybe the url is corrupted. "\
+                        "Specified url: " << url;
 
         tray_data->tray_icon->setState(qcd::TrayIcon::State::Normal);
     }
@@ -68,7 +68,7 @@ void qcd::TrayIcon::notify(const QString& title, const QString& message, const Q
 {
     if (!url.isEmpty() && !url.isValid())
     {
-        std::cerr << "Url is invalid. Specified url: " << QSTRING_TO_CHAR(url.toString()) << '\n';
+        qDebug() << "Url is invalid. Specified url: " << url;
         return;
     }
 

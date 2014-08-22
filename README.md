@@ -13,7 +13,7 @@ A Qt based cpp0x.pl's Code Desk app.
 <sup>[#1] Only executable. Requires Qt5 and libNotify.</sup>
 
 ## Screenshots
-![Main Window](/screenshots/MainWindow.png?raw=true)
+![Main Window](/screenshots/MainWindow-ambiance.png?raw=true)
 
 ## Icons
 * [FatCow](http://fatcow.com)

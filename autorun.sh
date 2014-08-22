@@ -5,7 +5,7 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
    
-APP='qcodedesk --autorun'
+APP='qcodedesk --minimalized'
 DIR=`pwd`
 APP_PATH=$DIR/$APP
 

@@ -40,7 +40,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="iconSize">
        <size>
@@ -118,7 +118,7 @@
              <bool>false</bool>
             </property>
             <attribute name="headerVisible">
-             <bool>true</bool>
+             <bool>false</bool>
             </attribute>
             <attribute name="headerCascadingSectionResizes">
              <bool>false</bool>
@@ -370,7 +370,7 @@
                </font>
               </property>
               <property name="text">
-               <string>qCodeDesk rev1h</string>
+               <string>qCodeDesk 0.9-stable</string>
               </property>
               <property name="textFormat">
                <enum>Qt::AutoText</enum>

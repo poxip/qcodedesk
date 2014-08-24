@@ -468,7 +468,7 @@ Licencja: GPLv3</string>
     <string>Aktualizuje listę tematów</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+R, F5</string>
+    <string>Ctrl+R</string>
    </property>
   </action>
   <action name="actionToggleWindow">

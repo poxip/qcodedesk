@@ -38,6 +38,7 @@ private Q_SLOTS:
     // Hide window to irritate the user!
     void closeEvent(QCloseEvent *e);
 
+    void toggleMainWindow();
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
     // Can be used as slot but even to simply toggle window
     void toggleWindow() { setVisible(!isVisible()); }

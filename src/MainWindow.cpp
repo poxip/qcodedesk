@@ -6,6 +6,7 @@
 
 #include "MainWindow.h"
 #include "ui_mainwindow.h"
+#include <QFuture>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -119,7 +120,7 @@ void MainWindow::configureActions()
 {
     ui->refreshButton->setDefaultAction(ui->actionRefresh);
 
-    connect(ui->actionToggleWindow, SIGNAL(triggered()), this, SLOT(toggleWindow()));
+    connect(ui->actionToggleWindow, SIGNAL(triggered()), this, SLOT(toggleMainWindow()));
     connect(ui->actionRefresh, SIGNAL(triggered()), this, SLOT(performNewsViewUpdate()));
     connect(ui->actionQuit, SIGNAL(triggered()), qApp, SLOT(quit()));
 }
@@ -183,7 +184,6 @@ void MainWindow::createTrayIcon()
     tray_icon->setState(qcd::TrayIcon::State::Normal);
 }
 
-
 bool MainWindow::eventFilter(QObject* object, QEvent* event)
 {
     // Is it main window?
@@ -204,20 +204,24 @@ void MainWindow::closeEvent(QCloseEvent *e)
     e->ignore();
 }
 
+void MainWindow::toggleMainWindow()
+{
+    if (isHidden())
+    {
+        show();
+        activateWindow();
+    }
+    else if (isMinimized())
+        setWindowState(Qt::WindowActive);
+    else
+        hide();
+}
+
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     switch(reason) {
     case QSystemTrayIcon::ActivationReason::Trigger:
-        // BUGFIX issue #14
-        if (isMinimized())
-        {
-            showNormal();
-            activateWindow();
-
-            break;
-        }
-
-        toggleWindow();
+        toggleMainWindow();
         break;
     default:
         ;

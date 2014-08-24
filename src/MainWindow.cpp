@@ -257,9 +257,10 @@ void MainWindow::updateNewsView(bool success, const QString &error_desc)
         item->setText(TopicViewColumn::Title, topic.title);
         item->setText(TopicViewColumn::PostCount, QString::number(topic.post_count));
 
-        // Last update - $data by $last_user
-        QString last_update = tr("%1 przez %2").arg(topic.update_date, topic.last_user);
-        item->setText(TopicViewColumn::LastUpdate, last_update);
+        // $data by $last_user
+        item->setText(TopicViewColumn::LastUpdate,
+            tr("%1 przez %2").arg(topic.date_diff, topic.last_user)
+        );
 
         QString url =  QString(FORUM_TOPIC_PAATTERN).arg(topic.id);
         item->setData(TopicViewColumn::UrlData, Qt::UserRole, url);

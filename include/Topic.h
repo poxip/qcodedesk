@@ -17,7 +17,8 @@ struct Topic
     Id forum_section;
 
 
-    QString update_date;
+    QDateTime update_date;
+    QString date_diff;
     std::size_t post_count;
 
     QString title;
@@ -28,14 +29,6 @@ struct Topic
           forum_section(0),
           post_count(0)
     {}
-
-    // Optional initializer
-    Topic(const Id id,
-          const Id forum_section,
-          const QString &title,
-          const QString &last_user,
-          const QString &update_date,
-          const uint post_count);
 };
 
 #endif // TOPIC_H

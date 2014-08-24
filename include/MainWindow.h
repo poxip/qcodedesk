@@ -16,6 +16,7 @@
 #include <iostream>
 
 #include "config.h"
+#include "Util.h"
 #include "qcd/TrayIcon.h"
 #include "News.h"
 

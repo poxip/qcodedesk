@@ -19,13 +19,14 @@ SOURCES += src/main.cpp \
     src/MainWindow.cpp \
     src/qcd/TrayIcon.cpp \
     src/News.cpp \
-    src/Topic.cpp
+    src/Util.cpp
 
 HEADERS  += include/MainWindow.h \
     include/qcd/TrayIcon.h \
     include/News.h \
     include/Topic.h \
-    include/config.h
+    include/config.h \
+    include/Util.h
 
 FORMS    += \
     ui/mainwindow.ui

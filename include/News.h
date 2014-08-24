@@ -21,11 +21,7 @@
 
 #define XML_URL "http://cpp0x.pl/xml/"
 
-#define SECONDS(a) a*1000
-#define MINUTES(a) SECONDS(a*60)
-
-#define MS_TO_SECONDS(a) a/1000
-#define MS_TO_MINUTES(a) MS_TO_SECONDS(a)/60
+#define DATE_TIME_PATTERN "yyyy-MM-dd hh:mm:ss"
 
 class News : public QObject
 {

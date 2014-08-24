@@ -5,6 +5,7 @@
   */
 
 #include "News.h"
+#include "Util.h"
 
 uint News::update_interval = MINUTES(1);
 
@@ -13,7 +14,6 @@ News::News()
     network_manager = new QNetworkAccessManager();
     updates_count = 0;
 }
-
 
 bool News::_parse(const QString &data)
 {
@@ -54,8 +54,16 @@ bool News::_parse(const QString &data)
         topic.id            = e.attribute("Id").toUInt();
         topic.forum_section = e.attribute("ParentId").toUInt();
         topic.last_user     = e.attribute("LastUserNick");
-        topic.update_date   = e.attribute("UpdateDT");
+        topic.update_date   = QDateTime::fromString(
+            e.attribute("UpdateDT"),
+            DATE_TIME_PATTERN
+        );
         topic.post_count    = e.attribute("PostCount").toUInt();
+        ut::DateTimeDelta dt_delta(
+                topic.update_date,
+                QDateTime::currentDateTime()
+        );
+        topic.date_diff     = dt_delta.toString();
 
         // Title
         QDomElement title_element = node.firstChildElement();

@@ -15,6 +15,9 @@ A Qt based cpp0x.pl's Code Desk app.
 ## Screenshots
 ![Main Window](/screenshots/MainWindow-ambiance.png?raw=true)
 
+## Autostart on Linux
+Launch [autostart.sh](autostart.sh) script to add __qCodeDesk__ to autostart.
+
 ## Icons
 * [FatCow](http://fatcow.com)
 * [Paomedia](http://www.paomedia.com)

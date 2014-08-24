@@ -207,7 +207,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     switch(reason) {
-    case QSystemTrayIcon::ActivationReason::DoubleClick:
+    case QSystemTrayIcon::ActivationReason::Trigger:
         // BUGFIX issue #14
         if (isMinimized())
         {

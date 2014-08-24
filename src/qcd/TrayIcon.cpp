@@ -9,7 +9,7 @@ qcd::TrayIcon::TrayIcon(QObject *parent) :
     QSystemTrayIcon(parent)
 {
     // if __linux__ initialize libnotify
-#ifdef Q_OS_LINUX_
+#ifdef Q_OS_LINUX
     notify_init(APP_NAME);
 #else
     // set default Qt's messageClicked() callback

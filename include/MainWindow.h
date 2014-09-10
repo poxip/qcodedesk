@@ -20,7 +20,7 @@
 #include "qcd/TrayIcon.h"
 #include "News.h"
 
-#define FORUM_TOPIC_PAATTERN "http://cpp0x.pl/forum/temat/?id=%1"
+#define FORUM_TOPIC_PAATTERN "http://cpp0x.pl/forum/temat/?id=%1&p=auto"
 
 namespace Ui {
 class MainWindow;
